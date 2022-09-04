@@ -1,11 +1,11 @@
 import { Component, ReactNode } from "react";
-import WithRouter, { IWithRouterProps } from "../../app/with-router";
+import WithRouter, { IWithRouterProps } from "../../../app/with-router";
 
 
 
 class EcommercePage extends Component {
 
-  constructor(props) {
+  constructor(props: any) {
     super(props);
    
   }
@@ -19,7 +19,7 @@ class EcommercePage extends Component {
   }
 
 }
-export default WithRouter(EcommercePage);
+// export default WithRouter(EcommercePage);
 
 
 

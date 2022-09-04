@@ -1,5 +1,5 @@
 import express from "express";
-import { authorize } from "../conection/authorize.js";
+import { authorize } from "../API/authentications-and-authorizations/authorize.js";
 import userService from "./service.js";
 const router = express.Router();
 
