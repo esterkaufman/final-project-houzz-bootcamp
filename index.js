@@ -3,7 +3,7 @@ import "dotenv/config";
 import express from "express";
 import cors from "cors";
 import bodyParser from "body-parser";
-import userRrouter from "./users/controllers.js";
+import userRrouter from "./server/users/controllers.js";
 import conectionRouter from "./server/conection/controllers.js";
 import errHendler from "./server/conection/error-handler.js";
 
