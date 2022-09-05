@@ -6,6 +6,7 @@ export class ProdtuctClass {
         id:string,
         name:string
     };
+    
     private engine:string;
     private YearOfProduction:number;
     private km:number;
