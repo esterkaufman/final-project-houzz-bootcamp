@@ -1,18 +1,12 @@
-import mongoose from "mongoose";
+const GetAll = require("./controllers");
 
-const UserSchema = mongoose.Schema({
-  email: {
-    type: String,
-    required: [true, "Please provide an Email!"],
+const usersModel = {
+  name: "users",
+  model: {
+    name: { require: true, type: String },
+    pin: { require: true, type: String },
   },
-  password: {
-    type: String,
-    require: [true, "Please provide a password!"],
-  },
-  role: {
-    type: String,
-    require: [true, "mast have role"]
-  }
-});
+  controllers: [GetAll],
+};
 
-export default mongoose.model("Users", UserSchema);
+module.exports = usersModel;
