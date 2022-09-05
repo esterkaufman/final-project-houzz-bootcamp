@@ -1,6 +1,6 @@
 import "dotenv/config";
-import { createOneUser, createUserToken } from "../users/service.js";
-import User from "../users/model.js";
+import { createOneUser, createUserToken } from "../../users/service.js";
+import User from "../../users//model.js";
 import bcrypt from "bcrypt";
 
 function register(req, res) {
