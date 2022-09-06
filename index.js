@@ -1,5 +1,6 @@
-import createApplicationWithExpress from "./server/API/express.js";
-import mongoDBCOnection from "./server/API/mongo.js";
+require('dotenv').config();
 
-createApplicationWithExpress()
-mongoDBCOnection();
+const bootcempAPI1 = require("./server/bootcempAPI1");
+const CQExpressMomgoAPI = require("./server/CQ-API/CQEM-API");
+
+CQExpressMomgoAPI(bootcempAPI1);
