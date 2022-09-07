@@ -1,11 +1,11 @@
 import { Component, ReactNode } from "react";
-import WithRouter, { IWithRouterProps } from "../../app/with-router";
+import WithRouter, { IWithRouterProps } from "../../../app/with-router";
 
 
 
 class ChatBotPage extends Component {
 
-  constructor(props) {
+  constructor(props: IWithRouterProps) {
     super(props);
    
   }
