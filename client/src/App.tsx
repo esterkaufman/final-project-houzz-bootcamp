@@ -10,7 +10,7 @@ class App extends Component<AppProps, AppState>{
     let items : Array<Item> = []
     await GetAll('items')
     .then((data) => {      
-      items = {...data}
+      items = data || []
     }) 
     localStorage.setItem("items", JSON.stringify(items));
   }
