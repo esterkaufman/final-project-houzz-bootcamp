@@ -1,6 +1,5 @@
-require('dotenv').config();
+import appAPI from "./app/API/appAPI.js"
+import mongoDBConnection from "./app/API/appAPI.js"
 
-const bootcempAPI1 = require("./server/bootcempAPI1");
-const CQExpressMomgoAPI = require("./server/CQ-API/CQEM-API");
-
-CQExpressMomgoAPI(bootcempAPI1);
+appAPI()
+mongoDBConnection()
