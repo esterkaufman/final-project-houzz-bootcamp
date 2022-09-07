@@ -1,15 +1,13 @@
-const ApiPath = "/bootcemp1";
+import axios from '../services/axios'
 
 
 const ConectServer = () => {
-   fetch(`${ApiPath}`)
-      .then((res) => res.json())
-      .then((data) => { console.log(data.message, "conect") });
+   axios.get('')      
+      .then((data:any) => { console.log(data.message, "conect") });
 }
 const GetAll = (async (model: string) => {
    try {
-      let res = await fetch(`${ApiPath}/${model}`);
-      return res.json()
+      return (await axios.get(`${model}`)).data;
    }
    catch (error) {
       console.log(error)
@@ -17,10 +15,7 @@ const GetAll = (async (model: string) => {
 })
 const GetBYId = async (model: string, id: string) => {
    try {
-      let res = await fetch(`${ApiPath}/${model}/${id}`);
-      return res.json();
-
-
+      return (await axios.get(`$/${model}/${id}`)).data;      
    }
    catch (error) {
       console.log(error)
@@ -29,14 +24,8 @@ const GetBYId = async (model: string, id: string) => {
 const Add = async (model: string, item: any) => {
    try {
       console.log(item)
-      const res = await fetch(`${ApiPath}/${model}`, {
-         method: 'POST',
-         headers: {
-            'Content-Type': 'application/json'
-         },
-         body: JSON.stringify(item)
-      })
-      return await res.json();
+      return await axios.post(`$/${model}`,{item});     
+
    }
    catch (error) {
       console.log(error)
@@ -44,14 +33,7 @@ const Add = async (model: string, item: any) => {
 }
 const Edit = async (model: string, item: any) => {
    try {
-      const res = await fetch(`${ApiPath}/${model}/${item._id}`, {
-         method: 'PUT',
-         headers: {
-            'Content-Type': 'application/json'
-         },
-         body: JSON.stringify(item)
-      })
-      return await res.json();
+      return await axios.put(`$/${model}/${item._id}`,{item});           
    }
    catch (error) {
       console.log(error)
@@ -60,11 +42,9 @@ const Edit = async (model: string, item: any) => {
 
 const DeleteById = async (model: string, id: string) => {
    try {
-      console.log(`${ApiPath}/${model}/${id}`)
-      const res = await fetch(`${ApiPath}/${model}/${id}`, {
-         method: 'DELETE'
-      })
-      return res.json()
+      console.log(`/${model}/${id}`)
+      return await axios.delete(`$/${model}/${id}`);         
+      
    }
    catch (error) {
       console.log(error)
