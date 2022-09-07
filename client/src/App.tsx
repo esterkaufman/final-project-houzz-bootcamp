@@ -1,34 +1,15 @@
-import { Component } from "react";
+import React from 'react';
+import logo from './logo.svg';
+import { Counter } from './features/counter/Counter';
 import './App.css';
-import AppRouter from "./app/app-router";
-import { GetAll } from "./app/server-calls";
-import { Item } from "./items/types";
+import AppRouter from './app/router';
 
-class App extends Component<AppProps, AppState>{
-
-   async  componentDidMount(){
-    let items : Array<Item> = []
-    await GetAll('items')
-    .then((data) => {      
-      items = data || []
-    }) 
-    localStorage.setItem("items", JSON.stringify(items));
-  }
-
-  render() {
-    return (
-      <div className="App">
-        <AppRouter />
-      </div>
-    );
-  }
+function App() {
+  return (
+    <div className="App">
+<AppRouter />
+    </div>
+  );
 }
 
-type AppProps = IAppProps
-type AppState = IAppState
-interface IAppProps { }
-interface IAppState { items?: Array<Item> }
-
 export default App;
-
-
