@@ -4,7 +4,7 @@ const app = express()
 require("dotenv").config();
 
 
-// hello riki
+// hello riki, hello world
 let transporter = nodemailer.createTransport({
     service: 'gmail',
     auth: {
