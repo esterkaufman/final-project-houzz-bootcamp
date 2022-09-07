@@ -5,7 +5,7 @@ import WithRouter, { IWithRouterProps } from "../../../app/with-router";
 
 class ChatBotPage extends Component {
 
-  constructor(props: IWithRouterProps) {
+  constructor(props:any) {
     super(props);
    
   }

@@ -8,6 +8,7 @@ const {
   DeleteByIdController,
 } = require("./default-controllers");
 
+
 const CDefaultRoters = (router, model) => {
   model.routers.map((x) => {
     if (!typeof x === String)
