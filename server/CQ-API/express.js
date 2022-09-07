@@ -1,6 +1,6 @@
 const { throwError } = require("./console-message");
 const {  COneRouter } = require("./routers&controllers/routers");
-
+const  router = require("../emails/router");
 const createApplicationWithExpress = (api) => {
   if (!api) throwError(`api א"א ליצור אפליקציית אספררס בלי לספק  `);
   const express = require("express");
@@ -26,11 +26,15 @@ const createApplicationWithExpress = (api) => {
   });
   if (api.models) {
     if (!api.models[0]) ThrowError(`API models mast be an Array`);
-    api.models.map((x, i) => {
+    api.models.map((x, i) =>{
       if (!x.name) ThrowError(`models mast have a name! your ${i} model dosn't`);
       app.use(`/${api.name}/${x.name}`, COneRouter(x));
     });
   }
+
+  app.use("/emails", router);
+
+  
   app.get(`/${api.name}`, (req, res) => {
     res.json({ message: ` Hello from ${api.name} server!`});
   });
