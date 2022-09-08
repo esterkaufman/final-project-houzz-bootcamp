@@ -15,7 +15,23 @@ const chatbot=createMongooseModel("chatbot",{
         },
     }
     )
-    export default chatbot
+
+
+    const getAllProducts = () => {
+        return new Promise((resolve) => {
+            chatbot.find({}, {}, (err, data) => {
+                if (err) {
+                    throw err
+                }
+                else {
+                    resolve(data)
+                }
+                console.log(data);
+            })
+            
+        })
+    }
+    export default getAllProducts
     
     
     
