@@ -30,7 +30,16 @@ const chatbot=createMongooseModel("chatbot",{
             
         })
     }
-    export default getAllProducts
+
+    const addProducts = (obj) => {
+        return new Promise(_=> {
+            let add = new chatbot(obj)
+            add.save()
+           
+        })
+    
+    }
+    export default {getAllProducts,addProducts}
     
     
     
