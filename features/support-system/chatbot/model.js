@@ -8,13 +8,29 @@ const chatbot=createMongooseModel("chatbot",{
     solution:{
             type:[String],
             required:function(){
-                if(this.titel!="infotmetion")
+                if(this.titel!="information")
                 return {solution2:{type:[string]}}
             }
         },
     }
     )
-    export default chatbot
+
+
+    const getAllProducts = () => {
+        return new Promise((resolve) => {
+            chatbot.find({}, {}, (err, data) => {
+                if (err) {
+                    throw err
+                }
+                else {
+                    resolve(data)
+                }
+                console.log(data);
+            })
+            
+        })
+    }
+    export default getAllProducts
     
     
     
