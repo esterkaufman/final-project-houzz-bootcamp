@@ -1,5 +1,6 @@
 import {createMongooseModel} from "../../../app/API/create-quick/mongo"
 
+
 const chatbot=createMongooseModel("chatbot",{
     titel:{
         type:String,
