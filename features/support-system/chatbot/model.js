@@ -1,18 +1,29 @@
 import {createMongooseModel} from "../../../app/API/create-quick/mongo"
+import mongoose from 'mongoose';
+
+const {Schema}=mongoose;
+
+const solution2=new Schema({
+    key:{
+        type:String,
+        required:true
+    },
+    value:{
+        type:[String],
+        required:function(){return chatbot.titel!="information"}
+
+    }
+},{_id:0})
+
 
 
 const chatbot=createMongooseModel("chatbot",{
-    titel:{
-        type:String,
-        required :[true,"you must choose titel"]
+    title: {
+        type: String,
+        required: true
     },
-    solution:{
-            type:[String],
-            required:function(){
-                if(this.titel!="information")
-                return {solution2:{type:[string]}}
-            }
-        },
+    solution: [solution2]
+           
     }
     )
 
