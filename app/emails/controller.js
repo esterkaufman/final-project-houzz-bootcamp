@@ -34,6 +34,31 @@ router.post('/:id', function (req, res) {
     service.sendEmailById(id,to, res);
 });
 
+router.get('/',async (req, res) => {
+    let data = await service.getAllEmails();
+    res.json(data);
+});
+
+router.get('/:id',async (req, res) => {
+    let data = await service.getEmailById(req.params.id);
+    res.json(data);
+});
+
+router.put('/:id', async (req, res)=>
+{
+    console.log('i update, req,body:', req.body.subject);
+    console.log('i update, req,body with parse json:', req.body.text);
+    let data = await service.updateEmail(req.params.id, /*JSON.parse(*/req.body/*)*/);
+    res.json(data);
+})
+
+router.delete('/:id', async (req, res)=>
+{
+    console.log('delete product');
+    let data = await service.deleteEmail(req.params.id);
+    res.json(data);
+})
+
 
 //module.exports = router;
 export default router;
