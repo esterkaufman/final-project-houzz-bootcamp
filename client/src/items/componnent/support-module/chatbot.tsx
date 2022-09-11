@@ -1,25 +1,25 @@
 import { Component, ReactNode } from "react";
-import WithRouter, { IWithRouterProps } from "../../../app/with-router";
+// import WithRouter, { IWithRouterProps } from "../../../app/with-router";
 
 
 
-class ChatBotPage extends Component {
+// class ChatBotPage extends Component {
 
-  constructor(props:any) {
-    super(props);
+//   constructor(props:any) {
+//     super(props);
    
-  }
+//   }
 
-  render() : ReactNode{
+//   render() : ReactNode{
    
-    return (
-      <div>       
-      </div>
-    );
-  }
+//     return (
+//       <div>       
+//       </div>
+//     );
+//   }
 
-}
-export default WithRouter(ChatBotPage);
+// }
+// export default WithRouter(ChatBotPage);
 
 
 
