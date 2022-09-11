@@ -1,44 +1,37 @@
-import {createMongooseModel} from "../../../app/API/create-quick/mongo"
+import { createMongooseModel } from "../../../app/API/create-quick/mongo"
 import mongoose from 'mongoose';
 
-const {Schema}=mongoose;
+const { Schema } = mongoose;
 
-if (chatbot.titel !="information") { // IOS
-    const solution2=new Schema({
-        key:{
-            type:String,
-            required:true
-        }
-    },{_id:0})
-} else  {
-    const solution2=new Schema({
-        key:{
-            type:String,
-            required:true
-        },
-        value:{
-            type:[String],
-            required:function(){return chatbot.titel!="information"}
-    
-        }
-    },{_id:0})
-}
-    
-const chatbot=createMongooseModel("chatbot",{
+
+const solution2 = new Schema({
+    key: {
+        type: String,
+        required: true
+    },
+    value: {
+        type: [String],
+        required: function () { return chatbot.titel != "information" }//check required
+
+    }
+}, { _id: 0 })
+
+
+const chatbot = createMongooseModel("chatbot", {
     title: {
         type: String,
         required: true
     },
     solution: [solution2]
-           
-    }
-    )
-    export default chatbot
 
-    
-    
-    
-    
-    
-    
-    
+}
+)
+export default chatbot
+
+
+
+
+
+
+
+
