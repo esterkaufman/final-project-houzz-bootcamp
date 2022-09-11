@@ -7,23 +7,28 @@ const require = createRequire(import.meta.url);
 const nodemailer = require('nodemailer');
 require("dotenv").config();
 
-const createEmail = async (emailContent) => {
+const createEmail = async (emailContent, res) => {
    //return numbers of documents in collection
-    const x = EmailModel.aggregate();
-    console.log("x: ", x);
+   async function countOfEmails() {
+    return await EmailModel.countDocuments();
+   }
     return new Promise(async (resolve, reject) => {
         try
         {
             const newEmail = new EmailModel({
-            emailNumber: x,
-            subject: emailContent.subject, 
-            text: emailContent.text
+                emailNumber: (await countOfEmails())+1,
+                subject: emailContent.subject, 
+                text: emailContent.text
             });
             newEmail.save();
             resolve(newEmail);
+            res.status(200);
+            res.json("the email inserted successfully")
         }catch (error)
         {
           reject(error);
+          res.status(500);
+          res.json("the email inserted failed");
         } 
       });
 }
@@ -60,26 +65,25 @@ const sendEmail = async (mailOptions, res) => {
     }
 };
 
-const sendEmailById = async(id,to, res)=>{
-    console.log("id: "+id);
-    const findEmail = EmailModel.findById({_id:'631dc39c9073d596190c2e93'});
-    console.log("findEmail.text: ", findEmail.text);
-    if(findEmail)
-    {
-        const mailOptions =
+const sendEmailById = async(id,to, res)=>
+{
+    EmailModel.findOne({emailNumber: id}, (err, result)=>{
+        if(err)
         {
-            to: to,
-            subject: findEmail.subject,
-            //must be text
-            text: findEmail.text
+            res.status(400);
+            res.json("this id email invalid");
+            console.log("not valid email number!");
+        }else
+        {
+            const mailOptions =
+            {
+                to: to,
+                subject: result.subject,
+                text: result.text
+            }
+            sendEmail(mailOptions,res);
         }
-        sendEmail(mailOptions,res);
-    }else
-    {
-        res.status(400);
-        res.json("this id email invalid");
-    }
-    
+    });
 }
 
 

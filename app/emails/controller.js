@@ -4,9 +4,6 @@ import express from "express";
 const router = express.Router();
 import { createRequire } from 'module';
 const require = createRequire(import.meta.url);
-//import { BL } from "./BL"
-//const BL = require('../../features/support-system/chatbot/emails/BL.js');
-// const productsBL = require('../BL/productsBL');
 import service from "../../features/support-system/chatbot/emails/service.js"
 //import EmailModel from "../../features/support-system/chatbot/emails/model.js";
 const nodemailer = require('nodemailer');
@@ -34,11 +31,6 @@ router.post('/createEmail', function (req, res) {
 });
 
 router.post('/:id', function (req, res) {
-    console.log('i sendemailbyid'); 
-    const id = req.params.id;
-    const to  = req.body.to;
-    console.log("id: " + id);
-    console.log("to: " + to);
     service.sendEmailById(id,to, res);
 });
 
