@@ -3,7 +3,17 @@ import mongoose from 'mongoose';
 
 const {Schema}=mongoose;
 
-if (chatbot.titel !="information") { // IOS
+const chatbot=createMongooseModel("chatbot",{
+    title: {
+        type: String,
+        required: true
+    },
+    solution: [this.solution2]
+           
+    }
+    )
+
+if (chatbot.titel !="information") { 
     const solution2=new Schema({
         key:{
             type:String,
@@ -18,21 +28,13 @@ if (chatbot.titel !="information") { // IOS
         },
         value:{
             type:[String],
-            required:function(){return chatbot.titel!="information"}
+            required:true
     
         }
     },{_id:0})
 }
     
-const chatbot=createMongooseModel("chatbot",{
-    title: {
-        type: String,
-        required: true
-    },
-    solution: [solution2]
-           
-    }
-    )
+
     export default chatbot
 
     
