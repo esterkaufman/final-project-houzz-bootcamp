@@ -3,20 +3,27 @@ import mongoose from 'mongoose';
 
 const {Schema}=mongoose;
 
-const solution2=new Schema({
-    key:{
-        type:String,
-        required:true
-    },
-    value:{
-        type:[String],
-        required:function(){return chatbot.titel!="information"}
-
-    }
-},{_id:0})
-
-
-
+if (chatbot.titel !="information") { // IOS
+    const solution2=new Schema({
+        key:{
+            type:String,
+            required:true
+        }
+    },{_id:0})
+} else  {
+    const solution2=new Schema({
+        key:{
+            type:String,
+            required:true
+        },
+        value:{
+            type:[String],
+            required:function(){return chatbot.titel!="information"}
+    
+        }
+    },{_id:0})
+}
+    
 const chatbot=createMongooseModel("chatbot",{
     title: {
         type: String,
