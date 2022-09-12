@@ -1,6 +1,6 @@
 const chatbot_model = require('./chatbot/model')
 
-const getAllProducts = () => {
+const getAllItems = () => {
     return new Promise((resolve) => {
         chatbot_model.find({}, {}, (err, data) => {
             if (err) {
@@ -14,7 +14,7 @@ const getAllProducts = () => {
         
     })
 }
-const getProductsById = (id) => {
+const getItemsById = (id) => {
     console.log(id);
     return new Promise((resolve) => {
 
@@ -28,12 +28,12 @@ const getProductsById = (id) => {
             }
             console.log(data);
         });
-        // resolve("ProductsById")
+        // resolve("ItemsById")
     })
 }
 
 
-const updateProducts = (id, obj) => {
+const updateItems = (id, obj) => {
 console.log(obj,"obj");
     return new Promise((resolve,reject) => {
         chatbot_model.update({id},obj    
@@ -51,7 +51,7 @@ console.log(obj,"obj");
     })
 }
 
-const deliteProducts = (id) => {
+const deliteItems = (id) => {
     console.log(id);
     return new Promise((resolve) => {
         chatbot_model.remove({id}, (err, data) => {
@@ -65,7 +65,7 @@ const deliteProducts = (id) => {
     })
 }
 
-const addProducts = (obj) => {
+const addItems = (obj) => {
     return new Promise(_=> {
         let add = new chatbot(obj)
         add.save()
@@ -73,4 +73,4 @@ const addProducts = (obj) => {
     })
 
 }
-export default {getAllProducts,getProductsById,deliteProducts,updateProducts,addProducts}
+export default {getAllItems,getItemsById,deliteItems,updateItems,addItems}
