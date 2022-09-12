@@ -1,4 +1,4 @@
-const chatbot_model = require('./chatbot/model')
+import chatbot_model  from  './model' ;
 
 const getAllItems = () => {
     return new Promise((resolve) => {

@@ -9,10 +9,6 @@ const appAPI = () => {
   const app = basicAppWithExpress();
   app.use(signRouter);
   app.use("/users", userRrouter);
-
-
-
-
   app.use("/chatbot", chatbotRouter);
   app.use("/emails", emailRrouter);
   app.use("/requests", requestRrouter);

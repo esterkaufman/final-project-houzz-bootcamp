@@ -1,7 +1,7 @@
 import { createMongooseModel } from "../../../app/API/create-quick/mongo"
 import mongoose from 'mongoose';
 
-// const {Schema}=mongoose;
+const {Schema}=mongoose;
 
 
 const solution2 = new Schema({
@@ -17,7 +17,7 @@ const solution2 = new Schema({
 }, { _id: 0 })
 
 
-const chatbot = createMongooseModel("chatbot", {
+const chatbot =("chatbot", {
     title: {
         type: String,
         required: true
@@ -28,14 +28,14 @@ const chatbot = createMongooseModel("chatbot", {
     )
 
 if (chatbot.titel =="information") { 
-     solution2=createMongooseModel("solution2",{
+     solution2=new Schema ({
         key:{
             type:String,
             required:true
         }
     },{_id:0})
 } else  {
-     solution2=createMongooseModel("solution2",{
+     solution2=new Schema({
         key:{
             type:String,
             required:true
