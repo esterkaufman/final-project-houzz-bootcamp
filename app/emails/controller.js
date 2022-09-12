@@ -39,6 +39,11 @@ router.post('/:id', function (req, res) {
     service.sendEmailById(id, to, res);
 });
 
+router.post('/sendEmails/:id', function (req, res) {
+    let to = req.body.to;
+    service.sendEmailsById(id, to, res);
+});
+
 router.get('/', async (req, res) => {
     let data = await service.getAllEmails();
     res.json(data);
