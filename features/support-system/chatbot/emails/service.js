@@ -87,6 +87,29 @@ const sendEmailById = async(id,to, res)=>
     });
 }
 
+const sendEmailsById = async(id,to, res)=>
+{
+    EmailModel.findOne({emailNumber: id}, (err, result)=>{
+        if(err)
+        {
+            res.status(400);
+            res.json("this id email invalid");
+            console.log("not valid email number!");
+        }else
+        {
+            to.forEach(t => {
+                const mailOptions =
+                {
+                    to: t,
+                    subject: result.subject,
+                    text: result.text
+                }
+                sendEmail(mailOptions,res);
+            });
+        }
+    });
+}
+
 const getAllEmails = ()=>
 {
     return new Promise((resolve, reject) => 
@@ -166,4 +189,4 @@ const deleteEmail = (id) =>
 
 //module.exports = sendEmail;
     // sendEmail2
-export default {sendEmail, sendEmailById, createEmail, getAllEmails, getEmailById, updateEmail, deleteEmail};
+export default {sendEmail, sendEmailById, sendEmailsById, createEmail, getAllEmails, getEmailById, updateEmail, deleteEmail};
