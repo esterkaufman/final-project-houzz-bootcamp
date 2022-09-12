@@ -1,6 +1,7 @@
-const exp = require('express')
+import exp from "express";
+import chatbot_model from "../chatbot/model.js";
 const router = exp.Router()
-const chatbot_model = require('../chatbot')
+
 
 router.get('/getAllItems',  (req, res) => {
 

@@ -1,4 +1,4 @@
-import { createMongooseModel } from "../../../app/API/create-quick/mongo"
+import { createMongooseModel } from "../../../app/API/create-quick/mongo.js"
 import mongoose from 'mongoose';
 
 const {Schema}=mongoose;
