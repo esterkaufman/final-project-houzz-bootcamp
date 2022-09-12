@@ -1,4 +1,5 @@
-import RequestModel from "./model";
+import RequestModel from "./model.js";
+
 const getAllRequests = ()=>
 {
     return new Promise((resolve, reject) => 
@@ -13,65 +14,94 @@ const getAllRequests = ()=>
             for (let i = 0; i < result.length; i++) 
             {
                 let request = result[i];
-                console.log(email.emailNumber + ", " + email.subject + ", " + email.text);
+                console.log(request.requestNumber + ", " + request.subject + ", " + request.content);
             }
             resolve(result);
         })
     })   
 }
 
-const getEmailById = (id) =>
+const getRequestById = (id) =>
 {
     return new Promise((resolve, reject) =>
     {
-        EmailModel.findOne({emailNumber: id} , (err, result) =>
+        RequestModel.findOne({requestNumber: id} , (err, result) =>
         {   
             if (err)
             {
                 reject(err);
             }else
             {
-                console.log("this email:"+result.emailNumber + ", " + result.subject + ", " + result.text);
+                console.log("this request:"+result.requestsNumber + ", " + result.subject + ", " + result.content);
                 resolve(result);
             }
         })
     });
 }
 
-const updateEmail = (id, obj) =>
+const createRequest = (obj, res) => {
+    return new Promise((resolve, reject) =>
+    {
+        let r = new RequestModel(
+            {
+                "requestNumber": obj.requestNumber,   
+                "sender": obj.sender,
+                "subject": obj.subject,
+                "content": obj.content,
+                "status": obj.status
+            }
+        )
+        //למה נוצר לי שדה ריק בזמן הוספה???
+        r.save((error, response)=>
+        {  
+            if (error) 
+            {  
+                reject(error);  
+            }else{
+                resolve('inserted!!')
+            }  
+        })
+    })
+}
+
+const updateRequest = (id, obj) =>
 {
     return new Promise((resolve, reject) =>
     {
         console.log('obj.id: '+obj.id);
-        EmailModel.findOneAndUpdate({emailNumber: id},
+        RequestModel.findOneAndUpdate({requestNumber: id},
         {
-            "emailNumber": obj.emailNumber, 
+            "requestsNumber": id,
+            "sender": obj.sender, 
             "subject": obj.subject,
-            "text": obj.text
+            "content": obj.content,
+            "status": obj.status
         },(err,res)=>
         {
             if(err)
             {  
                 reject(err);  
             }else{
-                resolve("email updated!")
+                resolve("request updated!")
             } 
         })
     })
 }
 
-const deleteEmail = (id) =>
+const deleteRequest = (id) =>
 {
     return new Promise((resolve, reject) =>
     {
-        EmailModel.findOneAndDelete({emailNumber:id}, (err, res)=>
+        RequestModel.findOneAndDelete({requestNumber:id}, (err, res)=>
         {
             if(err)
             {
                 reject(err);
             }else{
-                resolve("email deleted!")
+                resolve("request deleted!")
             }
         })
     })
 }
+
+export default {getAllRequests, getRequestById, createRequest, updateRequest, deleteRequest}
