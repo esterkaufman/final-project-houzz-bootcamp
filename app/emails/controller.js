@@ -35,6 +35,7 @@ router.post('/:id', function (req, res) {
     // האם לא צריך להוציא את ה to מה req??
     //וכן לגבי ה id  אלא אם כן מגיע בפרמס.
     let to = req.body.to;
+    let id = req.params.id;
     service.sendEmailById(id, to, res);
 });
 

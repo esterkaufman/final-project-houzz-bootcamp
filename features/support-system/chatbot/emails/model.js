@@ -8,15 +8,15 @@ const EmailModel = createMongooseModel('Email', {
     // },
     emailNumber: {
       type: Number,
-      required: [true, "Please provide an Email!"],
+      required: [true],
     },
     subject: {
       type: String,
-      require: [true, "Please provide a password!"],
+      require: [true, "Please give title about email-content!"],
     },
     text: {
       type: String,
-      require: [true, "mast have role"],
+      require: [false],
     },
     
   })
