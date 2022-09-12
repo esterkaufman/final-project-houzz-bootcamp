@@ -2,12 +2,13 @@ import { createMongooseModel } from "../../../../app/API/create-quick/mongo.js";
 import userModel  from "../../../../app/users/model.js";
 
 const RequestModel = createMongooseModel('Request', {
-    requestsNumber: {
+    requestNumber: {
       type: Number,
       required: [true],
     },
     sender: {
-      type: userModel,
+      //how its be user model???
+      type: String,
       required: [true],
     },
     subject: {
