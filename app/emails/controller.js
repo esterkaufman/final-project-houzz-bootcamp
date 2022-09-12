@@ -11,6 +11,7 @@ require("dotenv").config();
 
 
 router.post('/', function (req, res) {
+
     const mailOptions =
     {
         to: req.body.to,
@@ -18,7 +19,7 @@ router.post('/', function (req, res) {
         //must be text
         text: req.body.text
     }
-    service.sendEmail(mailOptions,res);
+    service.sendEmail(mailOptions, res);
 });
 
 router.post('/createEmail', function (req, res) {
@@ -27,33 +28,34 @@ router.post('/createEmail', function (req, res) {
         subject: req.body.subject,
         text: req.body.text
     }
-    service.createEmail(emailContent,res);
+    service.createEmail(emailContent, res);
 });
 
 router.post('/:id', function (req, res) {
-    service.sendEmailById(id,to, res);
+    // האם לא צריך להוציא את ה to מה req??
+    //וכן לגבי ה id  אלא אם כן מגיע בפרמס.
+    let to = req.body.to;
+    service.sendEmailById(id, to, res);
 });
 
-router.get('/',async (req, res) => {
+router.get('/', async (req, res) => {
     let data = await service.getAllEmails();
     res.json(data);
 });
 
-router.get('/:id',async (req, res) => {
+router.get('/:id', async (req, res) => {
     let data = await service.getEmailById(req.params.id);
     res.json(data);
 });
 
-router.put('/:id', async (req, res)=>
-{
+router.put('/:id', async (req, res) => {
     console.log('i update, req,body:', req.body.subject);
     console.log('i update, req,body with parse json:', req.body.text);
     let data = await service.updateEmail(req.params.id, /*JSON.parse(*/req.body/*)*/);
     res.json(data);
 })
 
-router.delete('/:id', async (req, res)=>
-{
+router.delete('/:id', async (req, res) => {
     console.log('delete product');
     let data = await service.deleteEmail(req.params.id);
     res.json(data);

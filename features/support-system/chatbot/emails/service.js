@@ -35,6 +35,7 @@ const createEmail = async (emailContent, res) => {
 
 const sendEmail = async (mailOptions, res) => {
     console.log("i sendEmail: "+ mailOptions.to);
+    
     // need run one time, but we dont know do this.
     let transporter = nodemailer.createTransport({
         service: 'gmail',
