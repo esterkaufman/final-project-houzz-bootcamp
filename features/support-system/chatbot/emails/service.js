@@ -47,7 +47,7 @@ const sendEmail = async (mailOptions, res) => {
             clientSecret: process.env.OAUTH_CLIENT_SECRET,
             refreshToken: process.env.OAUTH_REFRESH_TOKEN
         }
-    });
+    },/*[8000]*/);
 
     try {
         transporter.sendMail(mailOptions, function (err, result) {

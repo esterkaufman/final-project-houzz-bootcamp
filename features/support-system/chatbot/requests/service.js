@@ -4,7 +4,7 @@ const getAllRequests = ()=>
 {
     return new Promise((resolve, reject) => 
     {
-        RequestModel.find({},/*.toArray*/(err, result) => 
+        RequestModel.find({},(err, result) => 
         {
             if (err)
             {
