@@ -38,343 +38,48 @@ function TableRequests() {
 
   return (
     <Container>
-     
-        {requests.map((r,index) => (
-         
-        <Row md={4}>
-          <Col> 
-          {/* <Row md={4}></Row> */}
-          <Card>
-            <Card.Img variant="top" src="holder.js/100px160" />
-            <Card.Body>
-              <Card.Title>{requests[index].requestNumber}</Card.Title>
-              <Card.Text>
-                This is a wider card with supporting text below as a natural lead-in
-                to additional content. This content is a little bit longer.
-              </Card.Text>
-            </Card.Body>
-            <Card.Footer>
-              <small className="text-muted">Last updated 3 mins ago</small>
-            </Card.Footer>
-          </Card>
-          </Col>
-        </Row>
+        {requests.filter(req => req.status === false).map((r,index) => (
+          // need do this evry 2 times
+          <Row md={4}> 
+            <Col> 
+              <Card>
+                <Card.Img variant="top" src="holder.js/100px160" />
+                <Card.Body>
+                  <Card.Title> {r.requestNumber} </Card.Title>
+                  <Card.Subtitle> { r.subject} </Card.Subtitle>
+                  <Card.Text> {r.content} </Card.Text>
+                  <Card.Text><small className="text-muted"> { r.status.toString() }</small></Card.Text>
+                </Card.Body>
+                <Card.Footer>
+                  <small className="text-muted">Last updated 3 mins ago</small>
+                </Card.Footer>
+              </Card>
+            </Col>
+          </Row>
+        ))}
+      
+      {requests.filter(req => req.status === true).map((r,index) => (
+          // need do this evry 2 times
+          <Row md={4}> 
+            <Col> 
+              <Card>
+                <Card.Img variant="top" src="holder.js/100px160" />
+                <Card.Body>
+                  <Card.Title> {r.requestNumber} </Card.Title>
+                  <Card.Subtitle> { r.subject} </Card.Subtitle>
+                <Card.Text> {r.content} </Card.Text>
+                <Card.Text><small className="text-muted"> { r.status.toString() }</small></Card.Text>
+                </Card.Body>
+                <Card.Footer>
+                  <small className="text-muted">Last updated 3 mins ago</small>
+                </Card.Footer>
+              </Card>
+            </Col>
+          </Row>
         ))}
        
     </Container>
+    
   )
 }
-       /* <Col> 
-        <Card>
-          <Card.Img variant="top" src="holder.js/100px160" />
-          <Card.Body>
-            <Card.Title>Card title</Card.Title>
-            <Card.Text>
-              This is a wider card with supporting text below as a natural lead-in
-              to additional content. This content is a little bit longer.
-            </Card.Text>
-          </Card.Body>
-          <Card.Footer>
-            <small className="text-muted">Last updated 3 mins ago</small>
-          </Card.Footer>
-        </Card>
-        </Col>
-        <Col xs={6}>
-        <Card>
-          <Card.Img variant="top" src="holder.js/100px160" />
-          <Card.Body>
-            <Card.Title>Card title</Card.Title>
-            <Card.Text>
-              This is a wider card with supporting text below as a natural lead-in
-              to additional content. This content is a little bit longer.
-            </Card.Text>
-          </Card.Body>
-          <Card.Footer>
-            <small className="text-muted">Last updated 3 mins ago</small>
-          </Card.Footer>
-        </Card>
-        </Col>
-        <Col>3 of 3</Col>
-      </Row>
-
-      <Row md={4}>
-        <Col> 
-        <Card>
-          <Card.Img variant="top" src="holder.js/100px160" />
-          <Card.Body>
-            <Card.Title>Card title</Card.Title>
-            <Card.Text>
-              This is a wider card with supporting text below as a natural lead-in
-              to additional content. This content is a little bit longer.
-            </Card.Text>
-          </Card.Body>
-          <Card.Footer>
-            <small className="text-muted">Last updated 3 mins ago</small>
-          </Card.Footer>
-        </Card>
-        </Col>
-        <Col xs={6}>
-        <Card>
-          <Card.Img variant="top" src="holder.js/100px160" />
-          <Card.Body>
-            <Card.Title>Card title</Card.Title>
-            <Card.Text>
-              This is a wider card with supporting text below as a natural lead-in
-              to additional content. This content is a little bit longer.
-            </Card.Text>
-          </Card.Body>
-          <Card.Footer>
-            <small className="text-muted">Last updated 3 mins ago</small>
-          </Card.Footer>
-        </Card>
-        </Col>
-        <Col>3 of 3</Col>
-      </Row>
-
-      <Row md={4}>
-        <Col> 
-        <Card>
-          <Card.Img variant="top" src="holder.js/100px160" />
-          <Card.Body>
-            <Card.Title>Card title</Card.Title>
-            <Card.Text>
-              This is a wider card with supporting text below as a natural lead-in
-              to additional content. This content is a little bit longer.
-            </Card.Text>
-          </Card.Body>
-          <Card.Footer>
-            <small className="text-muted">Last updated 3 mins ago</small>
-          </Card.Footer>
-        </Card>
-        </Col>
-        <Col xs={6}>
-        <Card>
-          <Card.Img variant="top" src="holder.js/100px160" />
-          <Card.Body>
-            <Card.Title>Card title</Card.Title>
-            <Card.Text>
-              This is a wider card with supporting text below as a natural lead-in
-              to additional content. This content is a little bit longer.
-            </Card.Text>
-          </Card.Body>
-          <Card.Footer>
-            <small className="text-muted">Last updated 3 mins ago</small>
-          </Card.Footer>
-        </Card>
-        </Col>
-        <Col>3 of 3</Col>
-      </Row>
-
-      <Row md={4}>
-        <Col> 
-        <Card>
-          <Card.Img variant="top" src="holder.js/100px160" />
-          <Card.Body>
-            <Card.Title>Card title</Card.Title>
-            <Card.Text>
-              This is a wider card with supporting text below as a natural lead-in
-              to additional content. This content is a little bit longer.
-            </Card.Text>
-          </Card.Body>
-          <Card.Footer>
-            <small className="text-muted">Last updated 3 mins ago</small>
-          </Card.Footer>
-        </Card>
-        </Col>
-        <Col xs={6}>
-        <Card>
-          <Card.Img variant="top" src="holder.js/100px160" />
-          <Card.Body>
-            <Card.Title>Card title</Card.Title>
-            <Card.Text>
-              This is a wider card with supporting text below as a natural lead-in
-              to additional content. This content is a little bit longer.
-            </Card.Text>
-          </Card.Body>
-          <Card.Footer>
-            <small className="text-muted">Last updated 3 mins ago</small>
-          </Card.Footer>
-        </Card>
-        </Col>
-        <Col>3 of 3</Col>
-      </Row>
-
-      <Row md={4}>
-        <Col> 
-        <Card>
-          <Card.Img variant="top" src="holder.js/100px160" />
-          <Card.Body>
-            <Card.Title>Card title</Card.Title>
-            <Card.Text>
-              This is a wider card with supporting text below as a natural lead-in
-              to additional content. This content is a little bit longer.
-            </Card.Text>
-          </Card.Body>
-          <Card.Footer>
-            <small className="text-muted">Last updated 3 mins ago</small>
-          </Card.Footer>
-        </Card>
-        </Col>
-        <Col xs={6}>
-        <Card>
-          <Card.Img variant="top" src="holder.js/100px160" />
-          <Card.Body>
-            <Card.Title>Card title</Card.Title>
-            <Card.Text>
-              This is a wider card with supporting text below as a natural lead-in
-              to additional content. This content is a little bit longer.
-            </Card.Text>
-          </Card.Body>
-          <Card.Footer>
-            <small className="text-muted">Last updated 3 mins ago</small>
-          </Card.Footer>
-        </Card>
-        </Col>
-        <Col>3 of 3</Col>
-      </Row>
-
-      <Row md={4}>
-        <Col> 
-        <Card>
-          <Card.Img variant="top" src="holder.js/100px160" />
-          <Card.Body>
-            <Card.Title>Card title</Card.Title>
-            <Card.Text>
-              This is a wider card with supporting text below as a natural lead-in
-              to additional content. This content is a little bit longer.
-            </Card.Text>
-          </Card.Body>
-          <Card.Footer>
-            <small className="text-muted">Last updated 3 mins ago</small>
-          </Card.Footer>
-        </Card>
-        </Col>
-        <Col xs={6}>
-        <Card>
-          <Card.Img variant="top" src="holder.js/100px160" />
-          <Card.Body>
-            <Card.Title>Card title</Card.Title>
-            <Card.Text>
-              This is a wider card with supporting text below as a natural lead-in
-              to additional content. This content is a little bit longer.
-            </Card.Text>
-          </Card.Body>
-          <Card.Footer>
-            <small className="text-muted">Last updated 3 mins ago</small>
-          </Card.Footer>
-        </Card>
-        </Col>
-        <Col>3 of 3</Col>
-      </Row>
-
-      <Row md={4}>
-        <Col> 
-        <Card>
-          <Card.Img variant="top" src="holder.js/100px160" />
-          <Card.Body>
-            <Card.Title>Card title</Card.Title>
-            <Card.Text>
-              This is a wider card with supporting text below as a natural lead-in
-              to additional content. This content is a little bit longer.
-            </Card.Text>
-          </Card.Body>
-          <Card.Footer>
-            <small className="text-muted">Last updated 3 mins ago</small>
-          </Card.Footer>
-        </Card>
-        </Col>
-        <Col xs={6}>
-        <Card>
-          <Card.Img variant="top" src="holder.js/100px160" />
-          <Card.Body>
-            <Card.Title>Card title</Card.Title>
-            <Card.Text>
-              This is a wider card with supporting text below as a natural lead-in
-              to additional content. This content is a little bit longer.
-            </Card.Text>
-          </Card.Body>
-          <Card.Footer>
-            <small className="text-muted">Last updated 3 mins ago</small>
-          </Card.Footer>
-        </Card>
-        </Col>
-        <Col>3 of 3</Col>
-      </Row>
-
-      <Row md={4}>
-        <Col> 
-        <Card>
-          <Card.Img variant="top" src="holder.js/100px160" />
-          <Card.Body>
-            <Card.Title>Card title</Card.Title>
-            <Card.Text>
-              This is a wider card with supporting text below as a natural lead-in
-              to additional content. This content is a little bit longer.
-            </Card.Text>
-          </Card.Body>
-          <Card.Footer>
-            <small className="text-muted">Last updated 3 mins ago</small>
-          </Card.Footer>
-        </Card>
-        </Col>
-        <Col xs={6}>
-        <Card>
-          <Card.Img variant="top" src="holder.js/100px160" />
-          <Card.Body>
-            <Card.Title>Card title</Card.Title>
-            <Card.Text>
-              This is a wider card with supporting text below as a natural lead-in
-              to additional content. This content is a little bit longer.
-            </Card.Text>
-          </Card.Body>
-          <Card.Footer>
-            <small className="text-muted">Last updated 3 mins ago</small>
-          </Card.Footer>
-        </Card>
-        </Col>
-        <Col>3 of 3</Col> */
-     
-  
-
-
-
-
-
-// function TableRequests() {
-//   return (
-//     // <CardGroup>
-//     <>
-//       <Card>
-//         <Card.Img variant="top" src="holder.js/100px160" />
-//         <Card.Body>
-//           <Card.Title>Card title</Card.Title>
-//           <Card.Text>
-//             This is a wider card with supporting text below as a natural lead-in
-//             to additional content. This content is a little bit longer.
-//           </Card.Text>
-//         </Card.Body>
-//         <Card.Footer>
-//           <small className="text-muted">Last updated 3 mins ago</small>
-//         </Card.Footer>
-//       </Card>
-//       <Card>
-//         {/* </>
-//         <> */}
-//       <Card.Img variant="top" src="holder.js/100px160" />
-//       <Card.Body>
-//         <Card.Title>Card title</Card.Title>
-//         <Card.Text>
-//           This is a wider card with supporting text below as a natural lead-in
-//           to additional content. This content is a little bit longer.
-//         </Card.Text>
-//       </Card.Body>
-//       <Card.Footer>
-//         <small className="text-muted">Last updated 3 mins ago</small>
-//       </Card.Footer>
-//       </Card>
-//     </>
-//     // </CardGroup>
-//   );
-// }
-// export default RowColLayoutColWidthBreakpointExample;
 export default TableRequests;
