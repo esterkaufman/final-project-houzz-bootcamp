@@ -49,11 +49,3 @@ if (chatbot.titel =="information") {
 }
 
 export default chatbot
-
-
-
-
-
-
-
-
