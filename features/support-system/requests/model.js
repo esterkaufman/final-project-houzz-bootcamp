@@ -1,5 +1,5 @@
-import { createMongooseModel } from "../../../../app/API/create-quick/mongo.js";
-import userModel  from "../../../../app/users/model.js";
+import { createMongooseModel } from "../../../app/API/create-quick/mongo.js";
+import userModel  from "../../../app/users/model.js";
 
 const RequestModel = createMongooseModel('Request', {
     requestNumber: {

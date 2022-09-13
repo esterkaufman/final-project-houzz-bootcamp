@@ -17,7 +17,7 @@ const solution2 = new Schema({
 }, { _id: 0 })
 
 
-const chatbot =("chatbot", {
+const chatbot =createMongooseModel("chatbot", {
     title: {
         type: String,
         required: true
@@ -27,26 +27,26 @@ const chatbot =("chatbot", {
     }
     )
 
-if (chatbot.titel =="information") { 
-     solution2=new Schema ({
-        key:{
-            type:String,
-            required:true
-        }
-    },{_id:0})
-} else  {
-     solution2=new Schema({
-        key:{
-            type:String,
-            required:true
-        },
-        value:{
-            type:[String],
-            required:true
+// if (chatbot.titel =="information") { 
+//      solution2=new Schema ({
+//         key:{
+//             type:String,
+//             required:true
+//         }
+//     },{_id:0})
+// } else  {
+//      solution2=new Schema({
+//         key:{
+//             type:String,
+//             required:true
+//         },
+//         value:{
+//             type:[String],
+//             required:true
     
-        }
-    },{_id:0})
-}
+//         }
+//     },{_id:0})
+// }
 
 export default chatbot
 
