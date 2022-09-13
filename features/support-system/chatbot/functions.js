@@ -1,4 +1,4 @@
-import chatbot_model  from  './model' ;
+import chatbot_model  from  './model.js' ;
 
 const getAllItems = () => {
     return new Promise((resolve) => {
@@ -66,9 +66,11 @@ const deliteItems = (id) => {
 }
 
 const addItems = (obj) => {
-    return new Promise(_=> {
-        let add = new chatbot(obj)
+    return new Promise((resolve, reject)=> {
+        let add = new chatbot_model(obj)
         add.save()
+        resolve(add)
+
        
     })
 
