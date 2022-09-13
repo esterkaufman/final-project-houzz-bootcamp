@@ -22,6 +22,8 @@ router.post('/', function (req, res) {
     service.sendEmail(mailOptions, res);
 });
 
+
+
 router.post('/createEmail', function (req, res) {
     const emailContent =
     {
@@ -39,10 +41,6 @@ router.post('/:id', function (req, res) {
     service.sendEmailById(id, to, res);
 });
 
-router.post('/sendEmails/:id', function (req, res) {
-    let to = req.body.to;
-    service.sendEmailsById(id, to, res);
-});
 
 router.get('/', async (req, res) => {
     let data = await service.getAllEmails();
@@ -67,6 +65,22 @@ router.delete('/:id', async (req, res) => {
     res.json(data);
 })
 
+// שליחה המונית
+// לא בטוח שנצרך מיוחד מכיוון שאפשר לשרשר כמה כתובות באותה מחרוזת ואז עובד מצוין ברגיל
+// router.post('/sendEmails/:id', function (req, res) {
+//     let to = req.body.to;
+//     service.sendEmailsById(id, to, res);
+// });
+
+// router.post('/sendEmails', function (req, res) {
+//     // const mailOptions =
+//     // {
+//     let to = req.body.to;
+//     let subject = req.body.subject;
+//     let text = req.body.text;
+//     // }
+//     service.sendEmails(to,subject,text, res);
+// });
 
 //module.exports = router;
 export default router;
