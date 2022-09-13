@@ -45,25 +45,16 @@ const sendEmail = async (mailOptions, res) => {
             clientSecret: process.env.OAUTH_CLIENT_SECRET,
             refreshToken: process.env.OAUTH_REFRESH_TOKEN
         }
-<<<<<<< HEAD
-    },/*[8000]*/);
-=======
     }/*,[,1000] - default count of emails?!*/);
->>>>>>> a8560932a7e716525529cf2ac46bd2a17c424b28
-
-    try {
-        //    let  mailOptions1=
-        //         {
-        //             "to": "d0533159638@gmail.com",
-        //             "subject": "good afternone",
-        //             //"text": "Hey there, it’s our first message sent with Nodemailer ;) ",
-        //             "html": "<b>Hey there! </b><br> This is our first message sent with Nodemailer",
-        //     }
+    try 
+    {
         transporter.sendMail(mailOptions, function (err, res) {
-            if (err) {
+            if (err) 
+            {
                 console.log("Error " + err);
             }
-            else {
+            else 
+            {
                 console.log("Email sent successfully");
                 res.json("Email sent successfully");
             }
@@ -74,8 +65,6 @@ const sendEmail = async (mailOptions, res) => {
         res.status(400).json({ message: error.message });
     }
 };
-
-// 
 
 const sendEmailById = async (id, to, res) => {
     EmailModel.findOne({ emailNumber: id }, (err, result) => {
@@ -96,8 +85,6 @@ const sendEmailById = async (id, to, res) => {
         }
     });
 }
-
-
 
 const getAllEmails = () => {
     return new Promise((resolve, reject) => {
@@ -157,6 +144,9 @@ const deleteEmail = (id) => {
         })
     })
 }
+
+export default { sendEmail, sendEmailById, createEmail, getAllEmails, getEmailById, updateEmail, deleteEmail };
+
 
 // לכאורה לא נצרך
 // const sendEmails = async (to, subject, text, res) => {
@@ -230,4 +220,3 @@ const deleteEmail = (id) => {
 
 //module.exports = sendEmail;
 // sendEmail2
-export default { sendEmail/*,sendEmails*/, sendEmailById,/* sendEmailsById ,*/ createEmail, getAllEmails, getEmailById, updateEmail, deleteEmail };
