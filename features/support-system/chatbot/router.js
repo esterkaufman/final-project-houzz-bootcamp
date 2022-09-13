@@ -1,5 +1,5 @@
 import exp from "express";
-import chatbot_model from "../chatbot/model.js";
+import chatbot_model from "./functions.js";
 const router = exp.Router()
 
 
@@ -16,6 +16,7 @@ router.get('/:id',  (req, res) => {
 
 router.post('/post', (req, res) => {
     console.log("chatbotpost");
+    console.log(req.body);
         let body = req.body
         chatbot_model.addItems(body).then(data=> res.json(data))    
     })

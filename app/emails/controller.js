@@ -4,7 +4,7 @@ import express from "express";
 const router = express.Router();
 import { createRequire } from 'module';
 const require = createRequire(import.meta.url);
-import service from "../../features/support-system/chatbot/emails/service.js"
+import service from "../../features/support-system/emails/service.js"
 //import EmailModel from "../../features/support-system/chatbot/emails/model.js";
 const nodemailer = require('nodemailer');
 require("dotenv").config();

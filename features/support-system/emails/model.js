@@ -1,5 +1,5 @@
 
-import { createMongooseModel } from "../../../../app/API/create-quick/mongo.js";
+import { createMongooseModel } from "../../../app/API/create-quick/mongo.js";
 
 const EmailModel = createMongooseModel('Email', {
     // to: {
