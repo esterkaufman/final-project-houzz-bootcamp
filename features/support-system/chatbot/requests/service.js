@@ -4,12 +4,11 @@ const getAllRequests = ()=>
 {
     return new Promise((resolve, reject) => 
     {
-        RequestModel.find({},/*.toArray*/(err, result) => 
+        RequestModel.find({},(err, result) => 
         {
             if (err)
             {
                 reject(err);
-                // throw boom.boomify(err);
             }
             for (let i = 0; i < result.length; i++) 
             {
@@ -44,6 +43,7 @@ const createRequest = (obj, res) => {
     {
         let r = new RequestModel(
             {
+                //אמור להיות בידי המשתמש להכניס מס פניה? לא אמור להיות אוטומטי??
                 "requestNumber": obj.requestNumber,   
                 "sender": obj.sender,
                 "subject": obj.subject,
@@ -52,15 +52,18 @@ const createRequest = (obj, res) => {
             }
         )
         //למה נוצר לי שדה ריק בזמן הוספה???
-        r.save((error, response)=>
-        {  
-            if (error) 
-            {  
-                reject(error);  
-            }else{
-                resolve('inserted!!')
-            }  
-        })
+        r.save();
+        resolve(RequestModel.find({ requestNumber: 2 }));
+        // resolve(r);
+        // r.save((error, response)=>
+        // {  
+        //     if (error) 
+        //     {  
+        //         reject(error);  
+        //     }else{
+        //         resolve('inserted!!')
+        //     }  
+        // })
     })
 }
 

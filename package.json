@@ -12,7 +12,8 @@
     "install": "cd client && npm install",
     "build": "cd client && npm run build",
     "heroku-postbuild": "npm run build",
-    "seed": "node seeders/seed.js"
+    "seed": "node seeders/seed.js",
+    "proxy":"http://localhost:8080/requests"
   },
   "repository": {
     "type": "git",
