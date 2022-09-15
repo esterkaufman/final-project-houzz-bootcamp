@@ -1,7 +1,9 @@
 import mongoose from "mongoose";
 import "dotenv/config";
+import { log } from "console";
 
 const   mongoDBConnection = (URL) => {
+  console.log("i in mongoconect!");
   const dbURL = URL || process.env.DB_URL;
   mongoose.connect(dbURL);
   const db = mongoose.connection;

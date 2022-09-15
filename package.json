@@ -13,7 +13,8 @@
     "install": "cd client && npm install",
     "build": "cd client && npm run build",
     "heroku-postbuild": "npm run build",
-    "seed": "node seeders/seed.js"
+    "seed": "node seeders/seed.js",
+    "proxy": "http://localhost:8080/requests"
   },
   "repository": {
     "type": "git",
@@ -34,7 +35,8 @@
     "if-env": "^1.0.4",
     "jsonwebtoken": "^8.5.1",
     "mongoose": "^6.5.2",
-    "nodemon": "^2.0.19"
+    "nodemailer": "^6.7.8",
+    "nodemon": "^2.0.19"    
   },
   "devDependencies": {
     "@types/node": "^18.7.6",

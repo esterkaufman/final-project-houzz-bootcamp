@@ -1,6 +1,5 @@
 import React, { JSXElementConstructor, ReactElement } from 'react';
-import { NavigateFunction, Params, useLocation, useNavigate, useOutlet, useParams, } from 'react-router-dom';
-import { Location } from "history";
+import { NavigateFunction, Params, useLocation, useNavigate, useOutlet, useParams,Location } from 'react-router-dom';
 
 
 function WithRouter<T extends object>(Componnent: React.ComponentType<IWithRouterProps & T>) {
