@@ -1,4 +1,5 @@
 import { Component } from "react";
+import { Button } from "react-bootstrap";
 import { Outlet } from "react-router-dom";
 import WithRouter, { IWithRouterProps } from "../../with-router";
 
@@ -14,7 +15,7 @@ const Data = WithRouter(
             const { navigate } = this.props
             return (
                 <div>
-                    <button onClick={() => { navigate("/addItem") }}>add item</button>
+                    <Button onClick={() => { navigate("/addItem") }}>add item</Button>
                     <Outlet />
                 </div>
             );
