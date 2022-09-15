@@ -9,4 +9,4 @@ During a 🎉 Kamatech Bootcamp 🎉 in my leading and mentoring.
 Mongo + Node + React + TypeScript
 
 ## Check Live App:
-[https://final-project-houzz-bootcamp.herokuapp.com/] (Products Site)
+[Products Site](https://final-project-houzz-bootcamp.herokuapp.com/)
