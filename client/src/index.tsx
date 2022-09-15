@@ -3,11 +3,12 @@ import { createRoot } from 'react-dom/client';
 import { Provider } from 'react-redux';
 import { store } from './app/store';
 import reportWebVitals from './reportWebVitals';
+import App from './App';
+
+// Import Styles
+import 'bootstrap/dist/css/bootstrap.min.css';
 import 'react-chatbot-kit/build/main.css'
 import './index.css';
-import App from './App';
-// its do: bootstrap work
-// import 'bootstrap/dist/css/bootstrap.min.css';
 
 const container = document.getElementById('root')!;
 const root = createRoot(container);
