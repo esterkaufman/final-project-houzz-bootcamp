@@ -1,3 +1,4 @@
+import express from "express";
 import basicAppWithExpress from "./create-quick/express.js";
 import userRrouter from "../users/controllers.js";
 import productRouter from "../product/controllers.js";
