@@ -33,7 +33,7 @@ const Config =
           },
           {
             widgetName: "javascriptLinks",
-            widgetFunc: (props) => <LinkList {...props} />,
+            widgetFunc: (props:any) => <LinkList {...props} />,
           }
 
         // {
