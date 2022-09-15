@@ -17,6 +17,11 @@ const appAPI = () => {
   app.use("/emails", emailRrouter);
   app.use("/requests", requestRrouter);
   app.use(errHendler);
+  
+  if (process.env.NODE_ENV === 'production') {
+    console.log("Using static client files!");
+    app.use(express.static('client/build'));
+  }
 };
 
 export default appAPI;
