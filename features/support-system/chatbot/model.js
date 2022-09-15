@@ -49,11 +49,3 @@ const chatbot =createMongooseModel("chatbot", {
 // }
 
 export default chatbot
-
-
-
-
-
-
-
-
