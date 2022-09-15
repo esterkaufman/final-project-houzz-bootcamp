@@ -13,7 +13,7 @@
     "build": "cd client && npm run build",
     "heroku-postbuild": "npm run build",
     "seed": "node seeders/seed.js",
-    "proxy":"http://localhost:8080/requests"
+    "proxy": "http://localhost:8080/requests"
   },
   "repository": {
     "type": "git",
@@ -35,7 +35,8 @@
     "jsonwebtoken": "^8.5.1",
     "mongoose": "^6.5.2",
     "nodemailer": "^6.7.8",
-    "nodemon": "^2.0.19"
+    "nodemon": "^2.0.19",
+    "react-chatbot-kit": "^2.1.0"
   },
   "devDependencies": {
     "@types/node": "^18.7.6",

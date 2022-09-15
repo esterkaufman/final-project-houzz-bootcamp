@@ -1,4 +1,4 @@
-import { Component } from "react";
+import { Component, ReactElement } from "react";
 import { createChatBotMessage } from "react-chatbot-kit";
 import LearningOptions from '../component/LearningOptions/LearningOptions';
 import LinkList from '../component/LinkList/LinkList';
@@ -8,10 +8,11 @@ const Config =
     initialMessages:
     [
         createChatBotMessage("Hi, I'm here to help. What do you want to learn?",
-            { widget: "learningOptions", },
-           //  { widget: "javascriptLinks", }
+            { widget: "learningOptions" }
             )
     ],
+    state:undefined,
+    customComponents:undefined,
     customStyles:
     {
         botMessageBox:
@@ -23,63 +24,42 @@ const Config =
             backgroundColor: "#376B7E",
         },
     },
+    customMessages:undefined,
     widgets: [
 
         {
             widgetName: "learningOptions",
-            widgetFunc: (props:any) =>{
-                return <LearningOptions {...props}/>
-            }           
+            widgetFunc: (props:any):ReactElement =>  <LearningOptions {...props}/> ,
+            props:undefined   ,
+            mapStateToProps:[]       
           },
           {
             widgetName: "javascriptLinks",
-            widgetFunc: (props:any) => <LinkList {...props} />,
-          }
-
-        // {
-        //     widgetName: "learningOptions",
-        //     widgetFunc: (props:any):Component => {return <LearningOptions/>}
-        // }
-        // },
-        // {
-        //     widgetName: "javascriptLinks",
-        //     widgetFunc: (props: any) =>  <LinkList {...props} /> ,
-        //     props: {
-        //         options: [
-        //             {
-        //                 text: "Introduction to JS",
-        //                 url:
-        //                     "https://www.freecodecamp.org/learn/javascript-algorithms-and-data-structures/basic-javascript/",
-        //                 id: 1,
-        //             },
-        //             {
-        //                 text: "Mozilla JS Guide",
-        //                 url:
-        //                     "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide",
-        //                 id: 2,
-        //             },
-        //             {
-        //                 text: "Frontend Masters",
-        //                 url: "https://frontendmasters.com",
-        //                 id: 3,
-        //             }
-        //         ]
-        //     }
-           
-        // },
-        // {
-        //     widgetName: "javascriptLinks",
-        //     // widgetFunc: (props:any) => <LinkList {...props} />,
-          
-        // }
-        // {
-        //     widgetName: "learningOptions",
-        //     widgetFunc: (props) => <LearningOptions {...props} />,
-        // },
-        // {
-        //   widgetName: "javascriptLinks",
-        //   widgetFunc: (props) => <LinkList {...props} />,
-        // },
+            widgetFunc: (props:any):ReactElement => <LinkList {...props} />,
+            props: {
+              options: [
+                {
+                  text: "Introduction to JS",
+                  url:
+                    "https://www.freecodecamp.org/learn/javascript-algorithms-and-data-structures/basic-javascript/",
+                  id: 1,
+                },
+                {
+                  text: "Mozilla JS Guide",
+                  url:
+                    "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide",
+                  id: 2,
+                },
+                {
+                  text: "Frontend Masters",
+                  url: "https://frontendmasters.com",
+                  id: 3,
+                },
+              ],
+            },
+            mapStateToProps:[]       
+          },
+      
     ]
 }
 export default Config
