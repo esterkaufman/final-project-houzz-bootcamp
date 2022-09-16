@@ -1,16 +1,14 @@
 import React, { useState, useEffect } from 'react';
 import Card from 'react-bootstrap/Card';
 import CardGroup from 'react-bootstrap/CardGroup';
-
-
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
-
+import { Link, Outlet  } from "react-router-dom";
 // function RowColLayoutColWidthBreakpointExample() {
 
  
-function TableRequests() {
+function Rrquests() {
 
   const [requests, setRequests] = useState([
   {
@@ -49,6 +47,11 @@ function TableRequests() {
                   <Card.Subtitle> { r.subject} </Card.Subtitle>
                   <Card.Text> {r.content} </Card.Text>
                   <Card.Text><small className="text-muted"> { r.status.toString() }</small></Card.Text>
+                  <Link to={"/ResponseAnswer/" + (r.requestNumber)} id="linkTo">{'response'} </Link> 
+                  {/* <Link to={"/ResponseAnswer/" + (r._id)} id="linkTo">{'details'} </Link> */}
+                  <div>
+                  <Outlet />
+                  </div>
                 </Card.Body>
                 <Card.Footer>
                   <small className="text-muted">Last updated 3 mins ago</small>
@@ -58,6 +61,7 @@ function TableRequests() {
           </Row>
         ))}
       
+
       {requests.filter(req => req.status === true).map((r,index) => (
           // need do this evry 2 times
           <Row md={4}> 
@@ -79,7 +83,6 @@ function TableRequests() {
         ))}
        
     </Container>
-    
   )
 }
-export default TableRequests;
+export default Rrquests;
