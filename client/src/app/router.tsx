@@ -7,7 +7,8 @@ import {
 import Data from "./menu/componnent/data";
 import Home from "./menu/componnent/home";
 import Menu from "./menu/componnent/menu";
-import TableRequests from "../features/support-system/TableRequests"
+import TableRequests from "../features/support-system/TableRequests";
+import AnswerDialog from "../features/support-system/AnswerDialog";
 import NotDefindeMenuChild from "./menu/componnent/not-definde-menu-child";
 
 
@@ -22,6 +23,7 @@ class AppRouter extends Component<AppRouterProps, AppRouterState>{
                             <Route path='/' element={<Home/>} key="home" />,
                             <Route path="/Data" element={<Data />} key="data" />, 
                             <Route path="/Request" element={<TableRequests />} key="data" />, 
+                            <Route path="/Answer" element={<AnswerDialog />}  key="data" />, 
                             <Route path="/notDefindeMenuChild" element={<NotDefindeMenuChild />} key="notDefindeMenuChild" />
                         ]} />
                     </Routes>
