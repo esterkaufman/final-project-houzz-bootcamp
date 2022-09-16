@@ -21,7 +21,7 @@ class ActionProvider {
         const greetingMessage  =this.state.createChatBotMessage("Hi, friend.")
         this.updateChatbotState(greetingMessage)
     }
-​
+
     handleJavascriptList = () =>
     {
         const message = this.state.createChatBotMessage(
@@ -32,7 +32,7 @@ class ActionProvider {
         );
         this.updateChatbotState(message);
     };
-​
+
     updateChatbotState(message:any)
     {
         this.state.setStateFunc((prevState: 
@@ -45,5 +45,4 @@ class ActionProvider {
         ))
     }
 }
-​
 export default ActionProvider;

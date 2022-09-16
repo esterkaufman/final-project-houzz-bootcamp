@@ -10,7 +10,10 @@ import Menu from "./menu/componnent/menu";
 import TableRequests from "../features/support-system/TableRequests";
 import AnswerDialog from "../features/support-system/AnswerDialog";
 import NotDefindeMenuChild from "./menu/componnent/not-definde-menu-child";
-
+import { Chatbot } from "react-chatbot-kit";
+import ActionProvider from "../features/chatbot/classes/ActionProvider ";
+import MessageParser from "../features/chatbot/classes/MessageParser";
+import Config from "../features/chatbot/classes/config";
 
 
 class AppRouter extends Component<AppRouterProps, AppRouterState>{
@@ -28,6 +31,9 @@ class AppRouter extends Component<AppRouterProps, AppRouterState>{
                         ]} />
                     </Routes>
                 </Router>
+                <div className="appChatbotContainer">
+                    <Chatbot config={Config} actionProvider={ActionProvider} messageParser={MessageParser} />
+                </div>
             </div>
         );
     }
