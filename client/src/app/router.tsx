@@ -7,9 +7,13 @@ import {
 import Data from "./menu/componnent/data";
 import Home from "./menu/componnent/home";
 import Menu from "./menu/componnent/menu";
-import TableRequests from "../features/support-system/TableRequests"
+import TableRequests from "../features/support-system/TableRequests";
+import AnswerDialog from "../features/support-system/AnswerDialog";
 import NotDefindeMenuChild from "./menu/componnent/not-definde-menu-child";
-
+import { Chatbot } from "react-chatbot-kit";
+import ActionProvider from "../features/chatbot/classes/ActionProvider ";
+import MessageParser from "../features/chatbot/classes/MessageParser";
+import Config from "../features/chatbot/classes/config";
 
 
 class AppRouter extends Component<AppRouterProps, AppRouterState>{
@@ -26,10 +30,14 @@ class AppRouter extends Component<AppRouterProps, AppRouterState>{
                             </Route>,
                             <Route path="/Request/:id" element={<ResponseAnswer /*someProps={1}*/ />} />,
                             // <Route path="/ResponseAnswer" element={<ResponseAnswer />} key="data" />,
+                            <Route path="/Answer" element={<AnswerDialog />}  key="data" />, 
                             <Route path="/notDefindeMenuChild" element={<NotDefindeMenuChild />} key="notDefindeMenuChild" />
                         ]} />
                     </Routes>
                 </Router>
+                <div className="appChatbotContainer">
+                    <Chatbot config={Config} actionProvider={ActionProvider} messageParser={MessageParser} />
+                </div>
             </div >
         );
     }
