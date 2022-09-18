@@ -5,6 +5,8 @@ const router = express.Router();
 
 router.get("/", authorize("Admin"), getAll);
 router.get("/:id", authorize(), getById);
+router.put("/:id", updateUser);
+router.delete("/:id", deleteUser)
 
 function getAll(req, res, next) {
   userService
@@ -30,4 +32,22 @@ function getById(req, res, next) {
     )
     .catch((error) => next(error));
 }
+
+function updateUser(req, res, next) {
+  const id = req.params.id
+  const user = req.body
+  userService
+  .updateUser(id, user)
+  .then((data) =>  res.status(200).json({ message: data }))
+  .catch((error) => next(error));
+}
+
+function deleteUser(req, res, next) {
+  const id = req.params.id
+  userService
+  .deleteUser(id)
+  .then((data) => res.status(200).json({ message: data }))
+  .catch((err)=> {next(err)})
+}
+
 export default router;

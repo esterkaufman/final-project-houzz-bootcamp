@@ -26,6 +26,7 @@ async function createOneUser(user, asksRole) {
         return bcrypt.hash(user.password, 10, (error, hash) => {
           if (error) reject(error);
           const createUser = new User({
+            name: user.name,
             email: user.email,
             password: hash,
             role: asksRole == "Admin" && user.role ? user.role : "user",
@@ -52,5 +53,38 @@ function createUserToken(user) {
   };
 }
 
-export default { getAll, getById };
+async function updateUser(id, user) {
+  console.log("user to update", user)
+  return new Promise(async (resolve, reject) => {
+    try {
+      const userToUpdate = new User({
+        name: user.name,
+        email: user.email,
+        password: user.password,
+        role: user.role,
+      })
+      console.log("userToUpdate", userToUpdate)
+      // await User.findByIdAndUpdate({
+      //   _id: id,
+      //   userToUpdate
+      // });
+      await userToUpdate.save()
+      resolve('updated')
+    } catch (error) {
+      reject(error)
+    }
+  });
+}
+
+async function deleteUser(id) {
+  console.log("user delete:", id)
+  return new Promise(async (resolve, reject) => {
+    User.findByIdAndRemove(id)
+    .then(resolve("deleted"))
+    .catch((err) => reject(err));
+  });
+}
+
+
+export default { getAll, getById, updateUser, deleteUser };
 export { createUserToken, createOneUser };

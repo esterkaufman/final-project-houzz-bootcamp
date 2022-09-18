@@ -1,6 +1,10 @@
 import { createMongooseModel } from "../API/create-quick/mongo.js";
 
 const UserModel = createMongooseModel('User', {
+  name: {
+    type: String,
+    required: [true, "Please provide a name!"],
+  },
   email: {
     type: String,
     required: [true, "Please provide an Email!"],
