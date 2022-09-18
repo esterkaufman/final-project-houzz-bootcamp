@@ -48,6 +48,7 @@ export default function Home() {
               style={{
                 float: 'right',
                 width: '12rem',
+                zIndex:'99999',
               }}>
               <Card.Img variant="top" src="" />
               <Card.Body>
