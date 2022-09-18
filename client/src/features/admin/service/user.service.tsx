@@ -4,7 +4,6 @@ import { Iuser } from "../type/user";
 class UserService {
     
     updateUserService = (id: string, user: Iuser) => {
-        console.log("process.env.SERVER_URL", process.env.SERVER_URL)
         return (
             axios.put(`http://localhost:8080/users/${id}`, user)
                 .then(data => {

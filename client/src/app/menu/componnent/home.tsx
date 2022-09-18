@@ -17,7 +17,7 @@ export default function Home() {
           if (!ref.current || ref.current.contains(event.target)) {
             return;
           }
-          console.log("here!");
+          setOverProfile(false)
           handler(event);
         };
         document.addEventListener("mousedown", listener);
