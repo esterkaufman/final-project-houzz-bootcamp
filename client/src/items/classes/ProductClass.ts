@@ -6,7 +6,6 @@ export class ProdtuctClass {
         id:string,
         name:string
     };
-    
     private engine:string;
     private YearOfProduction:number;
     private km:number;
@@ -16,9 +15,11 @@ export class ProdtuctClass {
     private accessories :string;
     private color:string;
     private price:number;
+    private quantity:number;
+    private image:string;
 
      constructor(producer:string, model:string, state:string, category:{ id:string,  name:string}, engine:string, YearOfProduction:number,km:number,
-        engineCapacity:number,tradeInOnline:boolean,numOfSites:number,accessories:string,color:string,price:number) {
+        engineCapacity:number,tradeInOnline:boolean,numOfSites:number,accessories:string,color:string,price:number, quantity:number,image:string) {
          this.producer = producer;
          this.model = model;
          this.state = state;
@@ -32,6 +33,8 @@ export class ProdtuctClass {
          this.accessories=accessories;
          this.color=color;
          this.price=price;
+         this.quantity=quantity;
+         this.image=image;
      }
 
 
@@ -48,5 +51,8 @@ export class ProdtuctClass {
      public get getAccessories ():string { return this.accessories };
      public get getColor ():string { return this.color };
      public get getPrice ():number { return this.price };
+     public get getQuantity ():number { return this.quantity };
+     public get getImage ():string { return this.image };
+
 
 }

@@ -1,6 +1,6 @@
-import { createMongooseModel } from "../API/create-quick/mongo.js";
+import { createMongooseModel } from "../../API/create-quick/mongo.js";
 
-const ProductModel = createMongooseModel('Product', {
+const SaleModel = createMongooseModel('Sale', {
     name: {
         type: String,
         required: [true, "Please provide an name!"],
@@ -27,5 +27,5 @@ const ProductModel = createMongooseModel('Product', {
     }
 })
 
-export default ProductModel
+export default SaleModel
 
