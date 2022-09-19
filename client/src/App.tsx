@@ -4,10 +4,12 @@ import { Counter } from './features/counter/Counter';
 import './App.css';
 import AppRouter from './app/router';
 
+
 function App() {
   return (
     <div className="App">
 <AppRouter />
+
     </div>
   );
 }
