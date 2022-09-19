@@ -12,8 +12,8 @@ function ShowItems() {
     }, [])
 
   const setProduct = () => {
-    leasingService
-          .getAllLeasingCars()
+    saleService
+          .getAllSaleCars()
           .then((res: Array<any>) => {
             let temp: Array<Car> = [];
             for (let i = 0; i < res.length; i++) {

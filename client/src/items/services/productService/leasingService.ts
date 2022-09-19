@@ -6,7 +6,7 @@ const url = "/leasing/";
 function getAllLeasingCars() {
     return axios
         .get(`${url}`, {})
-        .then((res) => res.data)
+        .then((res) => res.data.p)
         .catch((error) => {
             console.error(error);
         });
