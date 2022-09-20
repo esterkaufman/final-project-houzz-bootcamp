@@ -1,0 +1,27 @@
+.img-bg {
+  background-image: url("../../public/רקע\ רכב.jpg");
+  background-repeat: no-repeat;
+  background-size: 100%;
+  height: 100%;
+}
+
+.img-sale {
+  background-image: url("../../public/מכירה1.jpg");
+  background-repeat: no-repeat;
+  background-size: 100%;
+  height: 100%;
+}
+
+.img-renting {
+  background-image: url("../../public/השכרה1.jpg");
+  background-repeat: no-repeat;
+  background-size: 100%;
+  height: 100%;
+}
+
+.img-leasing {
+  background-image: url("../../public/ליסינג1.jpg");
+  background-repeat: no-repeat;
+  background-size: 100%;
+  height: 100%;
+}
