@@ -20,6 +20,7 @@ function getSaleCarById(id: string) {
             console.error(error);
         });
 }
+
 function addSaleCar(newCar: Car) {
     return axios
         .post(`${url}/`, newCar)
