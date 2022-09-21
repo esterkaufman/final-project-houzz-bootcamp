@@ -77,9 +77,9 @@ function TableRequests() {
   }
   const sendAnswer = async(text: string) => 
   {
-    console.log('sender: '+sender);
+    console.log('sender: '+requestDetails.sender);
     console.log('text: '+text); 
-    answerEmail = {to: sender, subject: 'hello, response for your request', text: text}
+    answerEmail = {to: requestDetails.sender, subject: 'hello, response for your request', text: requestDetails.text}
     const opts = {
         method: 'POST',      
         headers: {'Content-Type': 'application/json',},
