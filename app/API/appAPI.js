@@ -5,6 +5,7 @@ import signRouter from "../../features/admin/sign/controllers.js";
 import errHendler from "./authentications-and-authorizations/error-handler.js";
 import emailRrouter from "../emails/controller.js"
 import requestRrouter from "../../features/support-system/requests/controller.js";
+import chatbotRouter from '../../features/support-system/chatbot/router.js'
 const appAPI = () => {
   const app = basicAppWithExpress();
   app.use(signRouter);
@@ -12,6 +13,7 @@ const appAPI = () => {
   // app.use("/chatbot", chatbotRouter);
   app.use("/emails", emailRrouter);
   app.use("/requests", requestRrouter);
+  app.use("/chatbot",chatbotRouter)
   app.use(errHendler);
 };
 

@@ -1,6 +1,6 @@
 import { Component, ReactElement } from "react";
 import { createChatBotMessage } from "react-chatbot-kit";
-import LearningOptions from '../component/LearningOptions/LearningOptions';
+import HelpOptions from "../component/HelpOptions/HelpOptions";
 import LinkList from '../component/LinkList/LinkList';
 const Config =
 {
@@ -8,7 +8,7 @@ const Config =
     initialMessages:
     [
         createChatBotMessage("Hi, I'm here to help. What do you want to learn?",
-            { widget: "learningOptions" }
+            { widget: "helpOptions" }
             )
     ],
     state:undefined,
@@ -28,8 +28,8 @@ const Config =
     widgets: [
 
         {
-            widgetName: "learningOptions",
-            widgetFunc: (props:any):ReactElement =>  <LearningOptions {...props}/> ,
+            widgetName: "helpOptions",
+            widgetFunc: (props:any):ReactElement =>  <HelpOptions {...props}/> ,
             props:undefined   ,
             mapStateToProps:[]       
           },
