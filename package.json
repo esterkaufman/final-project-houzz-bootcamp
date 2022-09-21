@@ -5,15 +5,15 @@
   "main": "index.js",
   "type": "module",
   "scripts": {
+    "dev": "nodemon index.js",
     "start": "if-env NODE_ENV=production && npm run start:prod || npm run start:dev",
-    "start:prod": "node server.js",
+    "start:prod": "node index.js",
     "start:dev": "concurrently \"nodemon --ignore 'client/*'\" \"npm run client\"",
     "client": "cd client && npm run start",
     "install": "cd client && npm install",
     "build": "cd client && npm run build",
     "heroku-postbuild": "npm run build",
-    "seed": "node seeders/seed.js",
-    "proxy": "http://localhost:8080/requests"
+    "seed": "node seeders/seed.js"
   },
   "repository": {
     "type": "git",
@@ -24,6 +24,7 @@
   "dependencies": {
     "bcrypt": "^5.0.1",
     "body-parser": "^1.20.0",
+    "bootstrap": "^5.2.1",
     "colors": "^1.4.0",
     "concurrently": "^7.4.0",
     "cors": "^2.8.5",
@@ -35,8 +36,7 @@
     "jsonwebtoken": "^8.5.1",
     "mongoose": "^6.5.2",
     "nodemailer": "^6.7.8",
-    "nodemon": "^2.0.19",
-    "react-chatbot-kit": "^2.1.0"
+    "nodemon": "^2.0.19"
   },
   "devDependencies": {
     "@types/node": "^18.7.6",

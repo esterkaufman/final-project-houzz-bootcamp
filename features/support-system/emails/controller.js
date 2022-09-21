@@ -1,17 +1,18 @@
 
 //const router = require("express").Router();
 import express from "express";
+import { request } from "http";
 const router = express.Router();
 import { createRequire } from 'module';
+import { resolve } from "path";
 const require = createRequire(import.meta.url);
-import service from "../../features/support-system/emails/service.js"
+import service from "./service.js"
 //import EmailModel from "../../features/support-system/chatbot/emails/model.js";
 const nodemailer = require('nodemailer');
 require("dotenv").config();
 
 
 router.post('/', function (req, res) {
-
     const mailOptions =
     {
         to: req.body.to,
@@ -19,7 +20,11 @@ router.post('/', function (req, res) {
         //must be text
         text: req.body.text
     }
-    service.sendEmail(mailOptions, res);
+    //  console.log(mailOptions);
+    // Token is not defind, need to create account - google cloud
+    // service.sendEmail(mailOptions, res);
+    //לבנתיים, עד שהsend  יעבוד
+    service.sendEmail2(mailOptions, res);
 });
 
 

@@ -31,6 +31,8 @@ const createEmail = async (emailContent, res) => {
     });
 }
 
+
+
 const sendEmail = async (mailOptions, res) => {
     console.log("i sendEmail: " + mailOptions.to);
 
@@ -46,17 +48,15 @@ const sendEmail = async (mailOptions, res) => {
             refreshToken: process.env.OAUTH_REFRESH_TOKEN
         }
     }/*,[,1000] - default count of emails?!*/);
-    try 
-    {
+    try {
         transporter.sendMail(mailOptions, function (err, res) {
-            if (err) 
-            {
+            if (err) {
                 console.log("Error " + err);
             }
-            else 
-            {
+            else {
                 console.log("Email sent successfully");
-                res.json("Email sent successfully");
+                res.status(200).json("Email sent successfully");
+
             }
         })
 
@@ -65,6 +65,13 @@ const sendEmail = async (mailOptions, res) => {
         res.status(400).json({ message: error.message });
     }
 };
+
+const sendEmail2 = async (mailOptions, res) => {
+    res.status(200).json("Email sent successfully");
+
+};
+
+
 
 const sendEmailById = async (id, to, res) => {
     EmailModel.findOne({ emailNumber: id }, (err, result) => {
@@ -145,7 +152,7 @@ const deleteEmail = (id) => {
     })
 }
 
-export default { sendEmail, sendEmailById, createEmail, getAllEmails, getEmailById, updateEmail, deleteEmail };
+export default { sendEmail, sendEmail2, sendEmailById, createEmail, getAllEmails, getEmailById, updateEmail, deleteEmail };
 
 
 // לכאורה לא נצרך
