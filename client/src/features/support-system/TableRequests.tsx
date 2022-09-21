@@ -45,7 +45,7 @@ function TableRequests() {
   useEffect(() => 
   {
     initRequests().then(data => setRequests(data));
-  }, []);
+  },[]);
 
   const initRequests = async() => 
   {
@@ -109,8 +109,7 @@ function TableRequests() {
       <Row>
         <Col>
           <Container>
-          {requests.filter(req => req.status === false).map((r,index) => /*{*/
-            (
+          {requests.filter(req => req.status === false).map((r,index) => (
             <>
              <Row /*if={(1 === 0)}*/ /*md={2}*/> 
               <Col> 
@@ -141,7 +140,6 @@ function TableRequests() {
           
           </Container>
         </Col>
-
         <Col>
           <Container>
           {requests.filter(req => req.status === true).map((r,index) => (
