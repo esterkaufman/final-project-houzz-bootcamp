@@ -8,6 +8,8 @@ router.get("/:id", getById);
 router.post("/", create);
 router.put("/:id", authorize("Admin"), update);
 router.delete("/delete/:id", authorize("Admin"), deleteProduct);
+router.put("/updateCheckout/now", updateCheckout);
+
 
 function getAll(req, res) {
     cartService
@@ -51,6 +53,14 @@ function deleteProduct(req, res) {
         .deleteProduct(id)
         .then((p) =>
             res.status(201).json({ message: "deleted ", p })
+        )
+}
+
+function updateCheckout(req, res) {
+    cartService
+        .updateCheckout()
+        .then((p) =>
+            res.status(201).json({ message: "update checkout success ", p })
         )
 }
 
