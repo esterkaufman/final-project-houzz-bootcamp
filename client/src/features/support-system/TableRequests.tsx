@@ -8,7 +8,7 @@ import Col from 'react-bootstrap/Col';
 
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
-
+import Form from 'react-bootstrap/Form';
 // function RowColLayoutColWidthBreakpointExample() {
 
  
@@ -25,10 +25,11 @@ function TableRequests() {
   }
   ]);
    
+
   useEffect(() => 
   {
     initRequests().then(data => setRequests(data));
-  }, []);
+  },[]);
 
   const initRequests = async() => 
   {
@@ -62,19 +63,16 @@ function TableRequests() {
       <Row>
         <Col>
           <Container>
-          {requests.filter(req => req.status === false).map((r,index) => /*{*/
-            (
+          {requests.filter(req => req.status === false).map((r,index) => (
             <>
              <Row /*if={(1 === 0)}*/ /*md={2}*/> 
               <Col> 
                 <Card>
                   <Card.Header>
-                  <Button variant="primary" onClick={handleShow}>
-                  Launch demo modal
-                  </Button>
+                      <Button variant="primary" onClick={handleShow}> Answer </Button>
                   </Card.Header>
                   <Card.Img variant="top" src="holder.js/100px160" />
-                  <Card.Link>ansewer</Card.Link>
+                  {/* <Card.Link>ansewer</Card.Link> */}
                   <Card.Body>
                     <Card.Title> {r.requestNumber} </Card.Title>
                     <Card.Subtitle> { r.subject} </Card.Subtitle>
@@ -93,7 +91,6 @@ function TableRequests() {
           
           </Container>
         </Col>
-
         <Col>
           <Container>
           {requests.filter(req => req.status === true).map((r,index) => (
@@ -136,20 +133,54 @@ function TableRequests() {
       </Row>
     </Container>
 
-    <Modal show={show} onHide={handleClose}>
-			<Modal.Header closeButton>
-				<Modal.Title>Modal heading</Modal.Title>
-			</Modal.Header>
-			<Modal.Body>Woohoo, you're reading this text in a modal!</Modal.Body>
-			<Modal.Footer>
-				<Button variant="secondary" onClick={handleClose}>
-					Close
-				</Button>
-				<Button variant="primary" onClick={handleClose}>
-					Save Changes
-				</Button>
-			</Modal.Footer>
-		</Modal>
+    <Modal
+      show={show}
+      onHide={handleClose}
+      //aria-labelledby="contained-modal-title-vcenter"
+      centered
+      // full-screen={'xxl-down'}
+      size={'lg'}
+      backdrop="static"
+      keyboard={true}
+    >
+    <Modal.Header closeButton>
+        <Modal.Title>Modal heading</Modal.Title>
+      </Modal.Header>
+      <Modal.Body>
+      <Form>
+            <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
+              <Form.Label>sender</Form.Label>
+              <Form.Control
+                type="email"
+                placeholder="name@example.com"
+                autoFocus
+              />
+            </Form.Group>
+            <Form.Group
+              className="mb-3"
+              controlId="exampleForm.ControlTextarea1"
+            >
+              <Form.Label>content request</Form.Label>
+              <Form.Control as="textarea" rows={3} />
+            </Form.Group>
+            <Form.Group
+              className="mb-3"
+              controlId="exampleForm.ControlTextarea1"
+            >
+              <Form.Label>answer from manager </Form.Label>
+              <Form.Control as="textarea" rows={3} />
+            </Form.Group>
+          </Form>
+      </Modal.Body>
+      <Modal.Footer>
+        <Button variant="secondary" onClick={handleClose}>
+          Close
+        </Button>
+        <Button variant="primary" onClick={handleClose}>
+          Save Changes
+        </Button>
+      </Modal.Footer>
+    </Modal>
     </>
     
     // <Container>
