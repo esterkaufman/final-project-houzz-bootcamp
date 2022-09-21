@@ -1,46 +1,47 @@
 import React from "react";
-import { useState, useEffect } from 'react';
-import Button from 'react-bootstrap/Button';
-import Modal from 'react-bootstrap/Modal';
+// import { useState, useEffect } from 'react';
 
-// const ConditionalWrapper = ({
-//     condition,
-//     wrapper,
-//     children,
-//   }) => (condition ? wrapper(children) : console.log('data: '+children));
+// import Button from 'react-bootstrap/Button';
+// import Modal from 'react-bootstrap/Modal';
 
-function AnswerDialog(){
+// // const ConditionalWrapper = ({
+// //     condition,
+// //     wrapper,
+// //     children,
+// //   }) => (condition ? wrapper(children) : console.log('data: '+children));
 
-	const [show, setShow] = useState(false);
+// function AnswerDialog(){
 
-	const handleClose = () => setShow(false);
-	const handleShow = () => setShow(true);
+// 	// const [show, setShow] = useState(false);
 
-	return (
-		<>
-		<Button variant="primary" onClick={handleShow}>
-			Launch demo modal
-		</Button>
+// 	// const handleClose = () => setShow(false);
+// 	// const handleShow = () => setShow(true);
 
-		<Modal show={show} onHide={handleClose}>
-			<Modal.Header closeButton>
-				<Modal.Title>Modal heading</Modal.Title>
-			</Modal.Header>
-			<Modal.Body>Woohoo, you're reading this text in a modal!</Modal.Body>
-			<Modal.Footer>
-				<Button variant="secondary" onClick={handleClose}>
-					Close
-				</Button>
-				<Button variant="primary" onClick={handleClose}>
-					Save Changes
-				</Button>
-			</Modal.Footer>
-		</Modal>
-    </>
-	);
-}
+// 	return (
+// 		<>
+// 		<Button variant="primary" onClick={handleShow}>
+// 			Launch demo modal
+// 		</Button>
 
-export default AnswerDialog;
+// 		<Modal show={show} onHide={handleClose}>
+// 			<Modal.Header closeButton>
+// 				<Modal.Title>Modal heading</Modal.Title>
+// 			</Modal.Header>
+// 			<Modal.Body>Woohoo, you're reading this text in a modal!</Modal.Body>
+// 			<Modal.Footer>
+// 				<Button variant="secondary" onClick={handleClose}>
+// 					Close
+// 				</Button>
+// 				<Button variant="primary" onClick={handleClose}>
+// 					Save Changes
+// 				</Button>
+// 			</Modal.Footer>
+// 		</Modal>
+//     </>
+// 	);
+// }
+
+// export default AnswerDialog;
 
 
 // return(
