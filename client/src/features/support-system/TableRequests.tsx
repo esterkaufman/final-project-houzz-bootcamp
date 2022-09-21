@@ -79,13 +79,17 @@ function TableRequests() {
   {
     console.log('sender: '+requestDetails.sender);
     console.log('text: '+text); 
-    answerEmail = {to: requestDetails.sender, subject: 'hello, response for your request', text: requestDetails.text}
+    answerEmail = {to: requestDetails.sender, subject: 'hello, response for your request', text: "In response to your request: " +  requestDetails.subject +" , "+ text}
     const opts = {
         method: 'POST',      
         headers: {'Content-Type': 'application/json',},
         body: JSON.stringify(answerEmail)
     };
-    const response = await fetch('http://localhost:8080/emails/'+opts);
+    const response = await fetch('http://localhost:8080/emails', opts);
+    // const status = await response.status;
+   
+      // console.log("status return : " + status);
+   
     const data = await response.json();
     console.log('data: '+data);
     return data;
