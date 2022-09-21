@@ -25,10 +25,10 @@ class AppRouter extends Component<AppRouterProps, AppRouterState>{
                         <Route path='/' element={<Menu />} key="menu" children={[
                             <Route path='/' element={<Home />} key="home" />,
                             <Route path="/Data" element={<Data />} key="data" />,
-                            <Route path="/Request" element={<Rrquests />} key="data" >
-                                <Route path=":id" element={<ResponseAnswer />} />
-                            </Route>,
-                            <Route path="/Request/:id" element={<ResponseAnswer /*someProps={1}*/ />} />,
+                            <Route path="/TableRequests" element={<TableRequests />} key="data" />,
+                                // <Route path=":id" element={<ResponseAnswer />} />
+                            // </Route>,
+                            // <Route path="/Request/:id" element={<ResponseAnswer /*someProps={1}*/ />} />,
                             // <Route path="/ResponseAnswer" element={<ResponseAnswer />} key="data" />,
                             <Route path="/Answer" element={<AnswerDialog />}  key="data" />, 
                             <Route path="/notDefindeMenuChild" element={<NotDefindeMenuChild />} key="notDefindeMenuChild" />
