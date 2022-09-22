@@ -1,11 +1,11 @@
 import "dotenv/config";
-import Product from "./model.js";
+import Leasing from "./model.js";
 import bcrypt from "bcrypt";
 
 async function getAll() {
     return new Promise(async (resolve, reject) => {
         try {
-            const allProduct = await Product.find({});
+            const allProduct = await Leasing.find({});
             resolve(allProduct);
         }
         catch (error) {
@@ -17,7 +17,7 @@ async function getAll() {
 async function getById (id) {
     return new Promise(async (resolve, reject) => {
         try{
-            const product = await Product.findOne({ _id: id });
+            const product = await Leasing.findOne({ _id: id });
             resolve(product);
         }
         catch(error){
@@ -28,7 +28,7 @@ async function getById (id) {
 async function create (obj) {
     return new Promise(async (resolve, reject) => {
         try{
-            const product = await Product.create(obj);
+            const product = await Leasing.create(obj);
             resolve(product);
         }
         catch(error){
@@ -40,7 +40,7 @@ async function create (obj) {
 async function update (id, obj) {
     return new Promise(async (resolve, reject) => {
         try{
-            const product = await Product.findByIdAndUpdate(id, obj);
+            const product = await Leasing.findByIdAndUpdate(id, obj);
             resolve(product);
         }
         catch(error){
@@ -52,7 +52,7 @@ async function update (id, obj) {
 async function updateQuantity (id) {
     return new Promise(async (resolve, reject) => {
         try{
-            const product = await Product.findOne({ _id: id });
+            const product = await Leasing.findOne({ _id: id });
             product.update({quantity: product.quantity--});
             //const product = await Product.findByIdAndUpdate(id, obj);
             resolve(product);
