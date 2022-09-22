@@ -16,6 +16,8 @@ import { Chatbot } from "react-chatbot-kit";
 import ActionProvider from "../features/chatbot/classes/ActionProvider ";
 import MessageParser from "../features/chatbot/classes/MessageParser";
 import Config from "../features/chatbot/classes/config";
+import Register from "../features/admin/sign/register";
+import Login from "../features/admin/sign/login";
 
 
 class AppRouter extends Component<AppRouterProps, AppRouterState>{
@@ -31,6 +33,8 @@ class AppRouter extends Component<AppRouterProps, AppRouterState>{
                             <Route path='/' element={<Home />} key="home" />,
                             <Route path="/Data" element={<Data />} key="data" />,
                             <Route path="/Request" element={<TableRequests />} key="data" />,
+                            <Route path="/login" element={< Login/>} key="login" />,  
+                            <Route path="/register" element={<Register />} key="register" />, 
                             <Route path="/notDefindeMenuChild" element={<NotDefindeMenuChild />} key="notDefindeMenuChild" />
                         ]} />
                     </Routes>

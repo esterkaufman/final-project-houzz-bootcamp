@@ -1,33 +1,69 @@
 import axios from "axios";
-import { Iuser } from "../type/user";
+import { Iuser, IuserFromDB, IuserLogin } from "../type/user";
 
 class UserService {
-    
-    updateUserService = (id: string, user: Iuser) => {
+
+    getUserById = (id: string) => {
         return (
-            axios.put(`http://localhost:8080/users/${id}`, user)
+            axios.get(`/users/${id}`)
+                .then(user => {console.log("getUserById axios", user)
+                    return user.data.user
+                }).catch(err => {
+                    console.log("getUserById axios failed", err)
+                }))
+    }
+
+    registerService = (user: Iuser) => {
+        return (
+            axios.post('/register', user, { withCredentials: true })
+                .then(data => {
+                    console.log("post user axios", data, "and", data.data);
+                    return data.data;
+                }).catch(err => {
+                    if (err.response.data.error != null)
+                        return err.response.data.error;
+                    else if (err.response.data.message != null)
+                        return err.response.data.message;
+                    console.log('post user axios failed', err.response)
+                }))
+    }
+
+    loginService = (userLogin: IuserLogin) => {
+        return (
+            axios.post('/login', userLogin)
+                .then(data => {
+                    console.log("login xios", data, "and", data.data);
+                    return data.data;
+                }).catch(err => {
+                    if (err.response.data.message)
+                        return (err.response.data.message)
+                    console.log("login axios failed", err)
+                })
+        )
+    }
+
+    updateUserService = (id: string, user: IuserFromDB) => {
+        return (
+            axios.put(`/users/${id}`, user)
                 .then(data => {
                     console.log('update user axios', data, data.data);
                     return data;
                 }).catch(err => {
-                    throw Error('update user axios failed', err)
+                    console.log('update user axios failed', err)
                 }))
     }
 
     deleteUserService = (id: string) => {
         return (
-            axios.delete(`http://localhost:8080/users/${id}`)
+            axios.delete(`/users/${id}`)
                 .then(data => {
                     console.log('delete user axios', data, data.data);
                     return data;
                 }).catch(err => {
                     throw Error('delete user axios failed', err)
-                })
-        )
+                }))
     }
 }
-
-
 
 export default new UserService()
 

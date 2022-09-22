@@ -1,28 +1,31 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Button, Form } from "react-bootstrap"
 import { useNavigate } from "react-router-dom"
 import userService from "../service/user.service";
-import { Iuser } from "../type/user";
+import { IuserFromDB } from "../type/user";
+import Cookies from "js-cookie";
 
 export default function ManageProfile() {
 
     const nav = useNavigate();
-    ///getById by token///
-    const userDetails: Iuser = {
-        name: "my-name",
-        email: "email@gmail.com",
-        password: 123,
-        role: "user",
-    }
-    const [state, setState] = useState(userDetails);
+   
+    const [userState, setUserState]  = useState({name: '', email: '', password: '', role: ''} as IuserFromDB)
     const [isDisable, setDisabled] = useState(false);
+
+    useEffect(() => {
+
+        userService.getUserById(Cookies.get("id") as string)
+            .then(user => {
+                setUserState(user as unknown as IuserFromDB);
+            })
+    }, [])
 
 
     const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         const target = event.target;
-        const value = Number(target.value);
+        const value = target.value;
         const name = target.name as any;
-        setState({ ...state, [name]: value });
+        setUserState({ ...userState, [name]: value });
     }
 
     const handlerChangeSubmit = (e: React.FormEvent<HTMLFormElement>) => {
@@ -33,7 +36,7 @@ export default function ManageProfile() {
         e.preventDefault();
         const form = e.currentTarget;
         if (form.checkValidity()) {
-            userService.updateUserService('1', state)
+            userService.updateUserService(Cookies.get("id") as string, userState)
                 .then(() => nav('/toast', { state: { message: "user profile updated successfully", navigateAfter: "/" } }))
                 .catch((err) => console.log(err))
         }
@@ -48,14 +51,14 @@ export default function ManageProfile() {
                     <div>
                         <Form.Group className="text-muted" style={{ marginBottom: '20px' }} controlId="formBasicText">
                             <Form.Label style={{ float: 'left' }}>Full name</Form.Label>
-                            <Form.Control type="text" defaultValue={userDetails.name} name="name" required
+                            <Form.Control type="text" defaultValue={userState.name} name="name" required
                                 onChange={(event) => handleChange(event as any)}
-                                isInvalid={!state.name}
+                                isInvalid={!userState.name}
                             />
                             <Form.Control.Feedback type="invalid">invalid name.</Form.Control.Feedback>
                         </Form.Group>
                     </div>
-                    <div>
+                    {/* <div>
                         <Form.Group className="text-muted" style={{ marginBottom: '20px' }} controlId="formBasicText">
                             <Form.Label style={{ float: 'left' }}>Password</Form.Label>
                             <Form.Control type="number" defaultValue={userDetails.password} name="password" required
@@ -63,11 +66,11 @@ export default function ManageProfile() {
                             />
                             <Form.Control.Feedback type="invalid">invalid age.</Form.Control.Feedback>
                         </Form.Group>
-                    </div>
+                    </div> */}
                     <div>
                         <Form.Group className="text-muted" style={{ marginBottom: '20px' }} controlId="formBasicEmail">
                             <Form.Label style={{ float: 'left' }}>Email address</Form.Label>
-                            <Form.Control type="email" defaultValue={userDetails.email} name="email" readOnly
+                            <Form.Control type="email" defaultValue={userState.email} name="email" readOnly
                                 onChange={(event) => handleChange(event as any)}
                             />
                         </Form.Group>
@@ -75,7 +78,7 @@ export default function ManageProfile() {
                     <div>
                         <Form.Group className="text-muted" style={{ marginBottom: '20px' }} controlId="formBasicText">
                             <Form.Label style={{ float: 'left' }}>Role</Form.Label>
-                            <Form.Control type="text" defaultValue={userDetails.role} name="role" readOnly
+                            <Form.Control type="text" defaultValue={userState.role} name="role" readOnly
                                 onChange={(event) => handleChange(event as any)}
                             />
                         </Form.Group>

@@ -1,79 +1,60 @@
+import './formStyle.css'
+import { useFormik } from "formik"
+import { useNavigate } from "react-router"
+import *as Yup from 'yup'
+import userService from '../service/user.service'
 
-import { useState } from "react";
-import { Button, Form } from "react-bootstrap";
-import axios from "axios";
-import { LoginUser, User } from "../../../app/users/models";
+export default function Login() {
 
-// import Cookies from "universal-cookie";
-// const cookies = new Cookies()
+    const navigate = useNavigate()
 
-function Login() {
-    const [loginUser, setloginUser] = useState<LoginUser>({ email: "", password: "" });
-    const [currentUser, setCurrentUser] = useState<User>()
-
-
-    const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-        const name = event.target.name;
-        const value = event.target.value;
-        setloginUser(values => ({ ...values, [name]: value }))
+    const loginSubmit = () => {
+        userService.loginService(loginFormik.values)
+            .then(req => {
+                if (typeof req === 'string') {
+                   alert(req)
+                }
+                else if(req){
+                    navigate('/');
+                }
+            })
     }
 
-    const handleSubmit = async (event: React.FormEvent<HTMLElement>) => {
-        event.preventDefault();
-        try {
-            const res = await axios.post('http://localhost:8080/login', loginUser)
-            console.log("----CurrentUser------", res.data.user);
-            setCurrentUser(res.data.user)
-        } catch (error) {
-            console.log(error);
-        }
-    }
+    const loginValidate = Yup.object().shape({
+        email: Yup.string().required('email field is required').matches(/^[\w-.]+@([\w-]+\.)+[\w-]{2,4}$/g, 'need valid email'),
+        password: Yup.string().required('password field is required').matches(/^[0-9]/, 'need number')
+    })
 
-    const getAllUsers = async () => {
-        try {
-            const users = await axios.get('http://localhost:8080/users' , { headers: { Authorization: `Bearer ${currentUser!.token}`} })
-            console.log(users, "=====users=====");
-        }
-        catch (error) {
-            console.log(error);
-        }
-    }
+    const loginFormik = useFormik({
+        initialValues: {
+            email: '',
+            password: '',
+            remember: false,
+        },
+        onSubmit: loginSubmit,
+        validationSchema: loginValidate
+    })
+
 
     return (
-        <div>
-            <h2>login</h2>
-            <Form onSubmit={handleSubmit}>
-                <Form.Group controlId="formBasicEmail" >
-                    <Form.Label>Email address</Form.Label>
-                    <Form.Control
-                        type="text"
-                        name="email"
-                        placeholder="input email"
-                        value={"" + loginUser.email || ""}
-                        onChange={handleChange}
-                    />
-                </Form.Group>
-                <Form.Group controlId="formBasicEmail" >
-                    <Form.Label>Password</Form.Label>
-                    <Form.Control
-                        type="text"
-                        name="password"
-                        placeholder="input password"
+        <div className="wrapper">
+            <div className="logo"> <img src="https://www.freepnglogos.com/uploads/logo-home-png/home-start-blue-logo-icon-0.png" alt="" /> </div>
+            <div className="text-center mt-4 name">login</div>
+            <form className="p-3 mt-3" onSubmit={loginFormik.handleSubmit}>
 
-                        value={"" + loginUser.password || ""}
-                        onChange={handleChange}
-                    />
-                </Form.Group>
-                <Button type="submit" variant="primary" >login</Button>
-            </Form>
-            {
-                currentUser && <div>
-                    {currentUser.name} {currentUser.token}  {currentUser.role}
-                </div>
-            }
-            <Button onClick={getAllUsers} > getAllUsers </Button>
+                <div className="form-field d-flex align-items-center"> <span className="far fa-user"></span> <input type="email" name="email" id="email" placeholder="Email"
+                    onChange={loginFormik.handleChange} value={loginFormik.values.email} /> </div>
+                {loginFormik.errors.email ? <div className="alert alert-primary d-flex align-items-center" role="alert"> {loginFormik.errors.email}</div> : ''}
 
-        </div>
-    )
+                <div className="form-field d-flex align-items-center"> <span className="fas fa-key"></span> <input type="password" name="password" id="pwd" placeholder="Password"
+                    onChange={loginFormik.handleChange} value={loginFormik.values.password} /> </div>
+                {loginFormik.errors.password ? <div className="alert alert-primary d-flex align-items-center" role="alert"> {loginFormik.errors.password}</div> : ''}
+
+                <div className="form-group"> <label htmlFor="remember">remember me</label><input type="checkbox" className="form-check-input" name="remember" id="remember"
+                    onChange={loginFormik.handleChange}/></div>
+
+                <button type='submit' className="btn mt-3">Sign-In</button>
+            </form>
+            <div className="text-center fs-6"> <a href="http://127.0.0.1:3000/login">Sign-Up</a></div>
+        </div>)
 }
-export default Login
