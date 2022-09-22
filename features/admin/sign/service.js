@@ -1,39 +1,103 @@
 import "dotenv/config";
-import { createOneUser, createUserToken } from "../../../app/users/service.js"
+import {
+  createOneUser,
+  createUserToken
+} from "../../../app/users/service.js"
 import User from "../../../app/users/model.js";
 import bcrypt from "bcrypt";
 
 function register(req, res) {
   createOneUser(req.body)
-    .then((resulte) => {
-      const user = createUserToken(resulte._doc);
-      res.status(201).json({ message: "User Created Successfully", user });
+    .then((result) => {
+      const user = createUserToken(result._doc);
+      const now = new Date();
+      var time = now.getTime() + 60 * 60 * 1000;
+      now.setTime(time);
+      res
+        .cookie("access_token", user.token, {
+          httpOnly: true,
+          expires: now,
+          secure: process.env.NODE_ENV === "production",
+        })
+        .cookie("id", user._id.toHexString(), {
+          httpOnly: false,
+          expires: now,
+          secure: process.env.NODE_ENV === "production",
+        })
+        .cookie("name", user.name, {
+          httpOnly: false,
+          expires: now,
+          secure: process.env.NODE_ENV === "production",
+        })
+        .status(201).json({
+          message: "User Created Successfully",
+          user
+        });
     })
     .catch((error) => {
-      res.status(500).json({ massage: "Error creating user", error });
+      res.status(500).json({
+        message: "Error creating user",
+        error
+      });
     });
 }
 
 function login(req, res) {
-  User.findOne({ email: req.body.email })
-    .then((resulte) => {
+  User.findOne({
+      email: req.body.email
+    })
+    .then((result) => {
       bcrypt
-        .compare(req.body.password, resulte.password)
-        .then((correctPassword) => {
+        .compare(req.body.password, result.password)
+        .then(async (correctPassword) => {
           if (!correctPassword)
             res
-              .status(400)
-              .json({ massage: "Passwords does not match", error });
-          const user = createUserToken(resulte._doc);
-          res.status(200).json({ message: "Login Successful", user });
+            .status(400)
+            .json({
+              massage: "Password does not match",
+              error
+            });
+          const now = new Date();
+          var time = req.body.remember? now.getTime() + 60 * 60 * 1000 * 24 : now.getTime() + 60 * 60 * 1000;
+          now.setTime(time);
+          const user = await createUserToken(result._doc);
+          return res
+            .cookie("access_token", user.token, {
+              httpOnly: true,
+              expires: now,
+              secure: process.env.NODE_ENV === "production",
+            })
+            .cookie("id", user._id.toHexString(), {
+              httpOnly: false,
+              expires: now,
+              secure: process.env.NODE_ENV === "production",
+            })
+            .cookie("name", user.name, {
+              httpOnly: false,
+              expires: now,
+              secure: process.env.NODE_ENV === "production",
+            })
+            .status(200).json({
+              message: "Login Successful",
+              user
+            });
         })
         .catch((error) => {
-          res.status(400).json({ massage: "Passwords does not match", error });
+          res.status(400).json({
+            message: "Password does not match",
+            error
+          });
         });
     })
     .catch((error) => {
-      res.status(404).json({ massage: "Email not found", error });
+      res.status(404).json({
+        message: "Email not found",
+        error
+      });
     });
 }
 
-export { register, login };
+export {
+  register,
+  login
+};

@@ -6,16 +6,26 @@ const { sign } = jwt;
 
 async function getAll() {
   const allUsers = await User.find({})
-   return allUsers.map((u) => {
-      const { password, ...userWithoutPassword } = u;
-      return userWithoutPassword;
-    });
+  return allUsers.map((u) => {
+    const {
+      password,
+      ...userWithoutPassword
+    } = u;
+    return userWithoutPassword;
+  });
 }
 async function getById(id) {
-  const user = await User.findOne({ _id: id });
-  const { password, ...userWithoutPassword } = user._doc;
+  const user = await User.findOne({
+    _id: id
+  });
+  const {
+    password,
+    ...userWithoutPassword
+  } = user._doc;
   if (!userWithoutPassword) return;
-  return { ...userWithoutPassword };
+  return {
+    ...userWithoutPassword
+  };
 }
 
 async function createOneUser(user, asksRole) {
@@ -43,10 +53,16 @@ async function createOneUser(user, asksRole) {
 
 function createUserToken(user) {
   const secret = process.env.SECRET
-  const token = sign({ id: user._id, role: user.role }, secret, {
-    algorithm: "HS256",
+  const token = sign({
+    id: user._id,
+    role: user.role
+  }, secret, {
+    algorithm: "HS256"
   });
-  const { password, ...userWithoutPassword } = user;
+  const {
+    password,
+    ...userWithoutPassword
+  } = user;
   return {
     ...userWithoutPassword,
     token,
@@ -54,21 +70,13 @@ function createUserToken(user) {
 }
 
 async function updateUser(id, user) {
-  console.log("user to update", user)
   return new Promise(async (resolve, reject) => {
     try {
-      const userToUpdate = new User({
+      const userToUpdate = ({
         name: user.name,
-        email: user.email,
-        password: user.password,
         role: user.role,
       })
-      console.log("userToUpdate", userToUpdate)
-      // await User.findByIdAndUpdate({
-      //   _id: id,
-      //   userToUpdate
-      // });
-      await userToUpdate.save()
+      await User.findByIdAndUpdate(id, {$set: {...userToUpdate}})
       resolve('updated')
     } catch (error) {
       reject(error)
@@ -77,14 +85,21 @@ async function updateUser(id, user) {
 }
 
 async function deleteUser(id) {
-  console.log("user delete:", id)
   return new Promise(async (resolve, reject) => {
     User.findByIdAndRemove(id)
-    .then(resolve("deleted"))
-    .catch((err) => reject(err));
+      .then(resolve("deleted"))
+      .catch((err) => reject(err));
   });
 }
 
 
-export default { getAll, getById, updateUser, deleteUser };
-export { createUserToken, createOneUser };
+export default {
+  getAll,
+  getById,
+  updateUser,
+  deleteUser
+};
+export {
+  createUserToken,
+  createOneUser
+};
