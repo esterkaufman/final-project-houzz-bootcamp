@@ -47,7 +47,16 @@ function deleteUser(req, res, next) {
   const id = req.params.id
   userService
   .deleteUser(id)
-  .then((data) => res.status(200).json({ message: data }))
+  .then((data) => {
+    const cookie = req.cookies;
+    for (var prop in cookie) {
+      if (!cookie.hasOwnProperty(prop)) {
+          continue;
+      }    
+      res.cookie(prop, '', {expires: new Date(0)});
+  }
+    res.status(200).json({ message: data })
+  })
   .catch((err)=> {next(err)})
 }
 
