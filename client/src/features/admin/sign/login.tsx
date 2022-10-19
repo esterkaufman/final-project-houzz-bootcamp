@@ -3,10 +3,18 @@ import { useFormik } from "formik"
 import { useNavigate } from "react-router"
 import *as Yup from 'yup'
 import userService from '../service/user.service'
+import Cookies from 'js-cookie'
+import { useEffect } from 'react'
 
 export default function Login() {
 
     const navigate = useNavigate()
+
+    useEffect( () => {
+        if(Cookies.get("id") !== undefined){
+            navigate("/")
+        }
+    })
 
     const loginSubmit = () => {
         userService.loginService(loginFormik.values)

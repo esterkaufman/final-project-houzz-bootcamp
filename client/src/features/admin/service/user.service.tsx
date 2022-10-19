@@ -32,7 +32,7 @@ class UserService {
         return (
             axios.post('/login', userLogin)
                 .then(data => {
-                    console.log("login xios", data, "and", data.data);
+                    console.log("login axios", data, "and", data.data);
                     return data.data;
                 }).catch(err => {
                     if (err.response.data.message)

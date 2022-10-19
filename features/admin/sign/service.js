@@ -54,7 +54,7 @@ function login(req, res) {
             res
             .status(400)
             .json({
-              massage: "Password does not match",
+              massage: "Email or password does not exists",
               error
             });
           const now = new Date();
@@ -84,14 +84,14 @@ function login(req, res) {
         })
         .catch((error) => {
           res.status(400).json({
-            message: "Password does not match",
+            message: "Email or password does not exists",
             error
           });
         });
     })
     .catch((error) => {
       res.status(404).json({
-        message: "Email not found",
+        message: "Email or password does not exists",
         error
       });
     });
