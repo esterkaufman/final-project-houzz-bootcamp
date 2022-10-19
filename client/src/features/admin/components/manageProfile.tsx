@@ -13,13 +13,11 @@ export default function ManageProfile() {
     const [isDisable, setDisabled] = useState(false);
 
     useEffect(() => {
-
         userService.getUserById(Cookies.get("id") as string)
             .then(user => {
                 setUserState(user as unknown as IuserFromDB);
             })
-    }, [])
-
+    },)
 
     const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         const target = event.target;

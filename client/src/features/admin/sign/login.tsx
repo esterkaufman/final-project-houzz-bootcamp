@@ -55,6 +55,6 @@ export default function Login() {
 
                 <button type='submit' className="btn mt-3">Sign-In</button>
             </form>
-            <div className="text-center fs-6"> <a href="http://127.0.0.1:3000/login">Sign-Up</a></div>
+            <div className="text-center fs-6"> <a href="http://127.0.0.1:3000/register">Sign-Up</a></div>
         </div>)
 }

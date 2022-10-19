@@ -1,6 +1,7 @@
 import { Card, ListGroup } from "react-bootstrap";
 import { useNavigate } from 'react-router-dom';
 import React, { useEffect, useRef, useState } from 'react';
+import Cookies from "js-cookie";
 
 export default function Home() {
 
@@ -8,6 +9,12 @@ export default function Home() {
   const ref = useRef(null);
   const nav = useNavigate();
   const [isOverProfile, setOverProfile] = useState(false);
+
+      useEffect(() => {
+        if(Cookies.get("id") === undefined){
+            nav("/login");
+        } 
+    },)
 
   function useOnClickOutside(ref: any, handler: any) {
     useEffect(
