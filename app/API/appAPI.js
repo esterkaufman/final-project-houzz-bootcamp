@@ -1,7 +1,9 @@
 import express from "express";
 import basicAppWithExpress from "./create-quick/express.js";
 import userRrouter from "../users/controllers.js";
-import productRouter from "../product/controllers.js";
+import leasingRouter from "../product/leasing/controllers.js";
+import rentingRouter from "../product/renting/controllers.js";
+import saleRouter from "../product/sale/controllers.js";
 import cartRouter from "../cart/controllers.js"
 // import chatbotRouter from "../../features/support-system/chatbot/router.js"
 import signRouter from "../../features/admin/sign/controllers.js";
@@ -12,7 +14,9 @@ const appAPI = () => {
   const app = basicAppWithExpress();
   app.use(signRouter);
   app.use("/users", userRrouter);
-  app.use("/products", productRouter);
+  app.use("/leasing", leasingRouter);
+  app.use("/renting", rentingRouter);
+  app.use("/sale", saleRouter);
   app.use("/cart", cartRouter);
   // app.use("/chatbot", chatbotRouter);
   app.use("/emails", emailRrouter);

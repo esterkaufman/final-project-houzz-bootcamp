@@ -1,6 +1,6 @@
 import express from "express";
-import { authorize } from "../API/authentications-and-authorizations/authorize.js";
-import productService from "./service.js"
+import { authorize } from "../../API/authentications-and-authorizations/authorize.js";
+import SaleService from "./service.js"
 const router = express.Router();
 
 router.get("/", getAll);
@@ -11,7 +11,7 @@ router.put("/updateQuantity/:id", updateQuantity);
 router.delete("/delete/:id", authorize("Admin"), deleteProduct);
 
 function getAll(req, res) {
-    productService
+    SaleService
         .getAll()
         .then((p) =>
             res.status(201).json({ message: "get all sacsses", p })
@@ -20,7 +20,7 @@ function getAll(req, res) {
 
 function getById(req, res) {
     let id = req.params.id;
-    productService
+    SaleService
         .getById(id)
         .then((p) =>
             res.status(201).json({ message: "get by id sacsses", p })
@@ -29,7 +29,7 @@ function getById(req, res) {
 
 function create(req, res) {
     let obj = req.body;
-    productService
+    SaleService
         .create(obj)
         .then((p) =>
             res.status(201).json({ message: "created ", p })
@@ -39,7 +39,7 @@ function create(req, res) {
 function update(req, res) {
     let id = req.params.id;
     let obj = req.body;
-    productService
+    SaleService
         .update(id, obj)
         .then((p) =>
             res.status(201).json({ message: "updated ", p })
@@ -48,7 +48,7 @@ function update(req, res) {
 
 function updateQuantity(req, res) {
     let id = req.params.id;
-    productService
+    SaleService
         .updateQuantity(id)
         .then((p) =>
             res.status(201).json({ message: "updated ", p })
@@ -57,7 +57,7 @@ function updateQuantity(req, res) {
 
 function deleteProduct(req, res) {
     let id = req.params.id;
-    productService
+    SaleService
         .deleteProduct(id)
         .then((p) =>
             res.status(201).json({ message: "deleted ", p })
